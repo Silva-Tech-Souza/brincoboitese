@@ -1,6 +1,4 @@
 {
-    "manifest_version": 2,
-    "version": "0.0.1",
     "name": "brinco_de_boi",
     "short_name": "brinco_de_boi",
     "start_url": ".",
@@ -34,5 +32,4 @@
             "purpose": "maskable"
         }
     ]
- "content_security_policy": "script-src https://unpkg.com/canvaskit-wasm@0.30.0/bin/canvaskit.js;"
 }
