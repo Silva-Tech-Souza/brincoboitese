@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "215436264786",
+    "project_id": "brincoboi",
+    "storage_bucket": "brincoboi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:215436264786:android:fd438e0c0d02773f21e68b",
+        "android_client_info": {
+          "package_name": "com.example.brinco_de_boi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "215436264786-l4k6l416fese84srrmvc02isbo0oct0g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABF6si4OJZb62N6kJlvpA39DB0sR4IgiE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "215436264786-l4k6l416fese84srrmvc02isbo0oct0g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
