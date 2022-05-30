@@ -1,34 +1,294 @@
 {
   "project_info": {
-    "project_number": "215436264786",
-    "project_id": "brincoboi",
-    "storage_bucket": "brincoboi.appspot.com"
+    "project_number": "326184110814",
+    "firebase_url": "https://melocaliza-bbed3-default-rtdb.firebaseio.com",
+    "project_id": "melocaliza-bbed3",
+    "storage_bucket": "melocaliza-bbed3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:215436264786:android:fd438e0c0d02773f21e68b",
+        "mobilesdk_app_id": "1:326184110814:android:704820a38fa5db2a62d04f",
         "android_client_info": {
-          "package_name": "com.example.brinco_de_boi"
+          "package_name": "br.com.silvatechsouza.me_localiza"
         }
       },
       "oauth_client": [
         {
-          "client_id": "215436264786-l4k6l416fese84srrmvc02isbo0oct0g.apps.googleusercontent.com",
+          "client_id": "326184110814-h3ck6nfac2298bo0p52s0ndse24rj430.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyABF6si4OJZb62N6kJlvpA39DB0sR4IgiE"
+          "current_key": "AIzaSyCeg4J5rAS1StYj6qFZ8eSWpTfvvwwGZ8k"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "215436264786-l4k6l416fese84srrmvc02isbo0oct0g.apps.googleusercontent.com",
+              "client_id": "326184110814-h3ck6nfac2298bo0p52s0ndse24rj430.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "326184110814-33dqt8odf2b6m0arucj4gtd43d9s6r9p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.stsLocaliza"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326184110814:android:16ee0f27a3edf34662d04f",
+        "android_client_info": {
+          "package_name": "br.com.sts.melocaliza_sts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326184110814-h3ck6nfac2298bo0p52s0ndse24rj430.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeg4J5rAS1StYj6qFZ8eSWpTfvvwwGZ8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326184110814-h3ck6nfac2298bo0p52s0ndse24rj430.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "326184110814-33dqt8odf2b6m0arucj4gtd43d9s6r9p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.stsLocaliza"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326184110814:android:2b5f6a34262a03e562d04f",
+        "android_client_info": {
+          "package_name": "com.example.bloqueio_cell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326184110814-h3ck6nfac2298bo0p52s0ndse24rj430.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeg4J5rAS1StYj6qFZ8eSWpTfvvwwGZ8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326184110814-h3ck6nfac2298bo0p52s0ndse24rj430.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "326184110814-33dqt8odf2b6m0arucj4gtd43d9s6r9p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.stsLocaliza"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326184110814:android:f2c773177c4af8c062d04f",
+        "android_client_info": {
+          "package_name": "com.example.brinco_de_boi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326184110814-h3ck6nfac2298bo0p52s0ndse24rj430.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeg4J5rAS1StYj6qFZ8eSWpTfvvwwGZ8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326184110814-h3ck6nfac2298bo0p52s0ndse24rj430.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "326184110814-33dqt8odf2b6m0arucj4gtd43d9s6r9p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.stsLocaliza"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326184110814:android:a267c8ab4cb7a42862d04f",
+        "android_client_info": {
+          "package_name": "com.example.flutter_web_login_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326184110814-h3ck6nfac2298bo0p52s0ndse24rj430.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeg4J5rAS1StYj6qFZ8eSWpTfvvwwGZ8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326184110814-h3ck6nfac2298bo0p52s0ndse24rj430.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "326184110814-33dqt8odf2b6m0arucj4gtd43d9s6r9p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.stsLocaliza"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326184110814:android:98932b3319350f0d62d04f",
+        "android_client_info": {
+          "package_name": "com.example.localizame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326184110814-h3ck6nfac2298bo0p52s0ndse24rj430.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeg4J5rAS1StYj6qFZ8eSWpTfvvwwGZ8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326184110814-h3ck6nfac2298bo0p52s0ndse24rj430.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "326184110814-33dqt8odf2b6m0arucj4gtd43d9s6r9p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.stsLocaliza"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326184110814:android:bd0ac3e6718bd19762d04f",
+        "android_client_info": {
+          "package_name": "com.example.melocaliza_web"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326184110814-h3ck6nfac2298bo0p52s0ndse24rj430.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeg4J5rAS1StYj6qFZ8eSWpTfvvwwGZ8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326184110814-h3ck6nfac2298bo0p52s0ndse24rj430.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "326184110814-33dqt8odf2b6m0arucj4gtd43d9s6r9p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.stsLocaliza"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326184110814:android:53d188ea18dd4ae762d04f",
+        "android_client_info": {
+          "package_name": "com.example.sts_localiza"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326184110814-h3ck6nfac2298bo0p52s0ndse24rj430.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeg4J5rAS1StYj6qFZ8eSWpTfvvwwGZ8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326184110814-h3ck6nfac2298bo0p52s0ndse24rj430.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "326184110814-33dqt8odf2b6m0arucj4gtd43d9s6r9p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.stsLocaliza"
+              }
             }
           ]
         }

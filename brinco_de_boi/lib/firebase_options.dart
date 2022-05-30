@@ -44,42 +44,43 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-      apiKey: "AIzaSyDKfgoAjBqifbKjF49QA0YsJlnqA-BwrW4",
-      authDomain: "brincoboi.firebaseapp.com",
-      databaseURL: "https://brincoboi-default-rtdb.firebaseio.com",
-      projectId: "brincoboi",
-      storageBucket: "brincoboi.appspot.com",
-      messagingSenderId: "215436264786",
-      appId: "1:215436264786:web:de96724267f694e021e68b");
+    apiKey: 'AIzaSyAGfGcRMEReW68kkHeFrrrkd_zDvctC8Wo',
+    appId: '1:326184110814:web:d02b745e822330f462d04f',
+    messagingSenderId: '326184110814',
+    projectId: 'melocaliza-bbed3',
+    authDomain: 'melocaliza-bbed3.firebaseapp.com',
+    databaseURL: 'https://melocaliza-bbed3-default-rtdb.firebaseio.com',
+    storageBucket: 'melocaliza-bbed3.appspot.com',
+  );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyABF6si4OJZb62N6kJlvpA39DB0sR4IgiE',
-    appId: '1:215436264786:android:fd438e0c0d02773f21e68b',
-    messagingSenderId: '215436264786',
-    projectId: 'brincoboi',
-    databaseURL: 'https://brincoboi-default-rtdb.firebaseio.com/',
-    storageBucket: 'brincoboi.appspot.com',
+    apiKey: 'AIzaSyCeg4J5rAS1StYj6qFZ8eSWpTfvvwwGZ8k',
+    appId: '1:326184110814:android:f2c773177c4af8c062d04f',
+    messagingSenderId: '326184110814',
+    projectId: 'melocaliza-bbed3',
+    databaseURL: 'https://melocaliza-bbed3-default-rtdb.firebaseio.com',
+    storageBucket: 'melocaliza-bbed3.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD9Zyz1AHvWl-jKmHuEgLSgbvof4IRShqc',
-    appId: '1:215436264786:ios:855079f81eb31b3f21e68b',
-    messagingSenderId: '215436264786',
-    projectId: 'brincoboi',
-    storageBucket: 'brincoboi.appspot.com',
-    iosClientId:
-        '215436264786-pgpston0qpaq5uni08tp8vge8opklgeu.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAnRuhD0QzXI8slIzVS3QPxvBoxczV_BfE',
+    appId: '1:326184110814:ios:de7e7e075173ae6f62d04f',
+    messagingSenderId: '326184110814',
+    projectId: 'melocaliza-bbed3',
+    databaseURL: 'https://melocaliza-bbed3-default-rtdb.firebaseio.com',
+    storageBucket: 'melocaliza-bbed3.appspot.com',
+    iosClientId: '326184110814-kvlf2lb6r6k2sire2op8b09q9rh4giqe.apps.googleusercontent.com',
     iosBundleId: 'com.example.brincoDeBoi',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD9Zyz1AHvWl-jKmHuEgLSgbvof4IRShqc',
-    appId: '1:215436264786:ios:855079f81eb31b3f21e68b',
-    messagingSenderId: '215436264786',
-    projectId: 'brincoboi',
-    storageBucket: 'brincoboi.appspot.com',
-    iosClientId:
-        '215436264786-pgpston0qpaq5uni08tp8vge8opklgeu.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAnRuhD0QzXI8slIzVS3QPxvBoxczV_BfE',
+    appId: '1:326184110814:ios:de7e7e075173ae6f62d04f',
+    messagingSenderId: '326184110814',
+    projectId: 'melocaliza-bbed3',
+    databaseURL: 'https://melocaliza-bbed3-default-rtdb.firebaseio.com',
+    storageBucket: 'melocaliza-bbed3.appspot.com',
+    iosClientId: '326184110814-kvlf2lb6r6k2sire2op8b09q9rh4giqe.apps.googleusercontent.com',
     iosBundleId: 'com.example.brincoDeBoi',
   );
 }

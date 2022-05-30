@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../controllers/MenuController.dart';
+import '../screens/dashboard/dashboard_screen.dart';
 import '../screens/main/main_screen.dart';
 
 class RightSide extends StatefulWidget {
@@ -18,10 +19,84 @@ class _RightSideState extends State<RightSide> {
   TextEditingController senha = TextEditingController();
   TextEditingController users = TextEditingController();
   bool _passwordVisible = true;
+  checkUser() async {
+    try {
+      User? user = await FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => MultiProvider(
+                providers: [
+                  ChangeNotifierProvider(
+                    create: (context) => MenuController(),
+                  ),
+                ],
+                child: MainScreen(),
+              ),
+            ),
+            (Route<dynamic> route) => false);
+      } else {}
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  //login
+  Future<String?> signInWithEmailAndPassword(
+    String email,
+    String password,
+    void Function(FirebaseAuthException e) errorCallback,
+  ) async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      errorCallback(e);
+
+      return "Erro ao fazer o login";
+    }
+    return null;
+  }
+
+  Future<String?> _authUser(String email, String senhas) async {
+    if (email == null || senhas == null) {
+      var snackBar = SnackBar(
+        content: Text("Preencha os campos corretamente.",
+            style: const TextStyle(color: Colors.white)),
+        backgroundColor: Color.fromARGB(255, 34, 34, 34),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      return "erro";
+    } else {
+      String? resposta;
+
+      await signInWithEmailAndPassword(
+              email.toString(), senhas.toString(), (e) => "Cadastro não confere")
+          .then((value) => {
+                resposta = value,
+              });
+
+      if (resposta != null) {
+        var snackBar = SnackBar(
+          content: Text("Email e senha não conferem",
+              style: const TextStyle(color: Colors.white)),
+          backgroundColor: Color.fromARGB(255, 34, 34, 34),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        return "erro";
+      } else {
+        return null;
+      }
+    }
+  }
 
   @override
   void initState() {
     super.initState();
+    checkUser();
     _passwordVisible = true;
   }
 
@@ -151,19 +226,28 @@ class _RightSideState extends State<RightSide> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             try {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => MultiProvider(
-                                    providers: [
-                                      ChangeNotifierProvider(
-                                        create: (context) => MenuController(),
-                                      ),
-                                    ],
-                                    child: MainScreen(),
+                              String? resposta;
+                              await _authUser(users.text, senha.text)
+                                  .then((value) {
+                                resposta = value;
+                              });
+                              if (resposta == null) {
+                                await usuario!.loadUser();
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MultiProvider(
+                                      providers: [
+                                        ChangeNotifierProvider(
+                                          create: (context) => MenuController(),
+                                        ),
+                                      ],
+                                      child: MainScreen(),
+                                    ),
                                   ),
-                                ),
-                              );
+                                );
+                              } else {}
                             } on FirebaseAuthException catch (e) {}
                           }
                         },

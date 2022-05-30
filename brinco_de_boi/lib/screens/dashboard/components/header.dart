@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../controllers/MenuController.dart';
 import '../../../widgets/constants.dart';
 import '../../../widgets/responsive.dart';
+import '../dashboard_screen.dart';
 
 class Header extends StatelessWidget {
   const Header({
@@ -29,10 +30,25 @@ class Header extends StatelessWidget {
   }
 }
 
-class ProfileCard extends StatelessWidget {
-  ProfileCard({
-    Key? key,
-  }) : super(key: key);
+class ProfileCard extends StatefulWidget {
+  ProfileCard({Key? key}) : super(key: key);
+
+  @override
+  State<ProfileCard> createState() => _ProfileCardState();
+}
+
+class _ProfileCardState extends State<ProfileCard> {
+  @override
+  void initState() {
+    super.initState();
+    trazerdados();
+  }
+
+  trazerdados() async {
+    await usuario!.loadUser();
+
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +72,7 @@ class ProfileCard extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: defaultPadding / 2),
                     child: Text(
-                      "Angelina Jolie",
+                      usuario!.nome.toString(),
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
@@ -81,7 +97,7 @@ class SearchField extends StatelessWidget {
         labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
         floatingLabelStyle:
             TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-        hintText: "Search",
+        hintText: "Pesquisar",
         fillColor: secondaryColor,
         filled: true,
         border: OutlineInputBorder(

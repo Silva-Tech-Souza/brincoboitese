@@ -1,14 +1,28 @@
+import 'package:brinco_de_boi/screens/dashboard/dashboard_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../../controllers/MenuController.dart';
+import '../../../controllers/user.dart';
 import '../../../main.dart';
 import '../../login.dart';
+import '../main_screen.dart';
 
-class SideMenu extends StatelessWidget {
-  const SideMenu({
-    Key? key,
-  }) : super(key: key);
+class SideMenu extends StatefulWidget {
+  const SideMenu({Key? key}) : super(key: key);
+
+  @override
+  _SideMenuState createState() => _SideMenuState();
+}
+
+class _SideMenuState extends State<SideMenu> {
+  Future<void> _signOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+    } on FirebaseException catch (e) {}
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,47 +36,62 @@ class SideMenu extends StatelessWidget {
           DrawerListTile(
             title: "Home",
             svgSrc: "images/icons/menu_dashbord.svg",
-            press: () {},
+            press: () {
+              setState(() {
+                funionario = false;
+              });
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) => MultiProvider(
+                      providers: [
+                        ChangeNotifierProvider(
+                          create: (context) => MenuController(),
+                        ),
+                      ],
+                      child: MainScreen(),
+                    ),
+                  ),
+                  (Route<dynamic> route) => false);
+            },
           ),
           DrawerListTile(
-            title: "Transaction",
+            title: "Funcionários",
             svgSrc: "images/icons/menu_tran.svg",
-            press: () {},
+            press: () async {
+              setState(() {
+                funionario = true;
+              });
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) => MultiProvider(
+                      providers: [
+                        ChangeNotifierProvider(
+                          create: (context) => MenuController(),
+                        ),
+                      ],
+                      child: MainScreen(),
+                    ),
+                  ),
+                  (Route<dynamic> route) => false);
+            },
           ),
           DrawerListTile(
             title: "Task",
             svgSrc: "images/icons/menu_task.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Documents",
-            svgSrc: "images/icons/menu_doc.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Store",
-            svgSrc: "images/icons/menu_store.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Notification",
-            svgSrc: "images/icons/menu_notification.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Profile",
-            svgSrc: "images/icons/menu_profile.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Configurações",
-            svgSrc: "images/icons/menu_setting.svg",
-            press: () {},
+            press: () async {
+              /*     Users usuario = Users(id: "");
+              usuario.nome = "TESTE1";
+              usuario.referencia = "15544";
+              usuario.cargo = "master";
+              await usuario.registerAccount((e) => "");*/
+            },
           ),
           DrawerListTile(
             title: "Sair",
             svgSrc: "images/icons/menu_setting.svg",
-            press: () {
+            press: () async {
+              //usuario!.limpar();
+              await _signOut();
               Navigator.push(
                 context,
                 MaterialPageRoute(
