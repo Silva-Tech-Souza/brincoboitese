@@ -5,9 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controllers/MenuController.dart';
-import '../../../controllers/user.dart';
 import '../../../main.dart';
-import '../../login.dart';
 import '../main_screen.dart';
 
 class SideMenu extends StatefulWidget {
