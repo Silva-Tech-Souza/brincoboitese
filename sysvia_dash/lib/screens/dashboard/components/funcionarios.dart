@@ -145,7 +145,6 @@ class _RecentFilesState extends State<RecentFiles> {
                       width: sizeW * 0.25,
                       // height: sizeW * 0.17,
                       child: TextFormField(
-                        initialValue: numeroCliente.toString(),
                         keyboardType: TextInputType.name,
                         enabled: false,
                         decoration: const InputDecoration(
@@ -175,12 +174,14 @@ class _RecentFilesState extends State<RecentFiles> {
                         validator: (value) {},
                       ),
                     ),
+                    const SizedBox(
+                      height: 6,
+                    ),
                     SizedBox(
                       width: sizeW,
                       //    height: sizeW * 0.16,
                       child: TextFormField(
                         maxLength: 80,
-                        controller: razaosocial,
                         keyboardType: TextInputType.name,
                         decoration: const InputDecoration(
                           icon: Icon(
@@ -220,12 +221,11 @@ class _RecentFilesState extends State<RecentFiles> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              height: 50,
+                              height: 70,
                               width: sizeW * 0.30,
                               margin: const EdgeInsets.all(6),
                               child: TextFormField(
                                 maxLength: 80,
-                                controller: razaosocial,
                                 keyboardType: TextInputType.name,
                                 decoration: const InputDecoration(
                                   icon: Icon(
@@ -262,12 +262,11 @@ class _RecentFilesState extends State<RecentFiles> {
                               ),
                             ),
                             Container(
-                              height: 50,
+                              height: 70,
                               width: sizeW * 0.30,
                               margin: const EdgeInsets.all(6),
                               child: TextFormField(
                                 maxLength: 80,
-                                controller: razaosocial,
                                 keyboardType: TextInputType.name,
                                 decoration: const InputDecoration(
                                   icon: Icon(
@@ -295,6 +294,387 @@ class _RecentFilesState extends State<RecentFiles> {
                                   fillColor: Color.fromARGB(228, 194, 226, 247),
                                   filled: true,
                                   labelText: "IE/RG",
+                                ),
+                                validator: (value) {
+                                  if (value!.isNotEmpty) {
+                                    return "Preencha corretamente!";
+                                  }
+                                },
+                              ),
+                            ),
+                          ]),
+                    ),
+                    SizedBox(
+                      width: sizeW,
+                      //    height: sizeW * 0.16,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              height: 70,
+                              width: sizeW * 0.30,
+                              margin: const EdgeInsets.all(6),
+                              child: TextFormField(
+                                maxLength: 80,
+                                keyboardType: TextInputType.name,
+                                decoration: const InputDecoration(
+                                  icon: Icon(
+                                    Icons.business,
+                                    color: Colors.white,
+                                  ),
+                                  labelStyle: TextStyle(
+                                    fontSize: 15.0,
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color:
+                                            Color.fromARGB(255, 135, 184, 224)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12)),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: Color.fromARGB(255, 1, 97, 207)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  fillColor: Color.fromARGB(228, 194, 226, 247),
+                                  filled: true,
+                                  labelText: "Departamento",
+                                ),
+                                validator: (value) {
+                                  if (value!.isNotEmpty) {
+                                    return "Preencha corretamente!";
+                                  }
+                                },
+                              ),
+                            ),
+                            Container(
+                              height: 70,
+                              width: sizeW * 0.30,
+                              margin: const EdgeInsets.all(6),
+                              child: TextFormField(
+                                maxLength: 80,
+                                keyboardType: TextInputType.name,
+                                decoration: const InputDecoration(
+                                  icon: Icon(
+                                    Icons.business,
+                                    color: Colors.white,
+                                  ),
+                                  labelStyle: TextStyle(
+                                    fontSize: 15.0,
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color:
+                                            Color.fromARGB(255, 135, 184, 224)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12)),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: Color.fromARGB(255, 1, 97, 207)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  fillColor: Color.fromARGB(228, 194, 226, 247),
+                                  filled: true,
+                                  labelText: "Data Cadastro",
+                                ),
+                                validator: (value) {
+                                  if (value!.isNotEmpty) {
+                                    return "Preencha corretamente!";
+                                  }
+                                },
+                              ),
+                            ),
+                          ]),
+                    ),
+                    SizedBox(
+                      width: sizeW * 0.5,
+                      //    height: sizeW * 0.16,
+                      child: TextFormField(
+                        maxLength: 80,
+                        keyboardType: TextInputType.name,
+                        decoration: const InputDecoration(
+                          icon: Icon(
+                            Icons.business,
+                            color: Colors.white,
+                          ),
+                          labelStyle: TextStyle(
+                            fontSize: 15.0,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(255, 135, 184, 224)),
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(255, 1, 97, 207)),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          fillColor: Color.fromARGB(228, 194, 226, 247),
+                          filled: true,
+                          labelText: "Saldo",
+                        ),
+                        validator: (value) {
+                          if (value!.isNotEmpty) {
+                            return "Preencha corretamente!";
+                          }
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: sizeW * 0.5,
+                      //    height: sizeW * 0.16,
+                      child: TextFormField(
+                        maxLength: 80,
+                        keyboardType: TextInputType.name,
+                        decoration: const InputDecoration(
+                          icon: Icon(
+                            Icons.business,
+                            color: Colors.white,
+                          ),
+                          labelStyle: TextStyle(
+                            fontSize: 15.0,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(255, 135, 184, 224)),
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(255, 1, 97, 207)),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          fillColor: Color.fromARGB(228, 194, 226, 247),
+                          filled: true,
+                          labelText: "CEP",
+                        ),
+                        validator: (value) {
+                          if (value!.isNotEmpty) {
+                            return "Preencha corretamente!";
+                          }
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: sizeW * 0.5,
+                      //    height: sizeW * 0.16,
+                      child: TextFormField(
+                        maxLength: 80,
+                        keyboardType: TextInputType.name,
+                        decoration: const InputDecoration(
+                          icon: Icon(
+                            Icons.business,
+                            color: Colors.white,
+                          ),
+                          labelStyle: TextStyle(
+                            fontSize: 15.0,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(255, 135, 184, 224)),
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(255, 1, 97, 207)),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          fillColor: Color.fromARGB(228, 194, 226, 247),
+                          filled: true,
+                          labelText: "Endereço",
+                        ),
+                        validator: (value) {
+                          if (value!.isNotEmpty) {
+                            return "Preencha corretamente!";
+                          }
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: sizeW,
+                      //    height: sizeW * 0.16,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              height: 70,
+                              width: sizeW * 0.30,
+                              margin: const EdgeInsets.all(6),
+                              child: TextFormField(
+                                maxLength: 80,
+                                keyboardType: TextInputType.name,
+                                decoration: const InputDecoration(
+                                  icon: Icon(
+                                    Icons.business,
+                                    color: Colors.white,
+                                  ),
+                                  labelStyle: TextStyle(
+                                    fontSize: 15.0,
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color:
+                                            Color.fromARGB(255, 135, 184, 224)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12)),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: Color.fromARGB(255, 1, 97, 207)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  fillColor: Color.fromARGB(228, 194, 226, 247),
+                                  filled: true,
+                                  labelText: "Número",
+                                ),
+                                validator: (value) {
+                                  if (value!.isNotEmpty) {
+                                    return "Preencha corretamente!";
+                                  }
+                                },
+                              ),
+                            ),
+                            Container(
+                              height: 70,
+                              width: sizeW * 0.30,
+                              margin: const EdgeInsets.all(6),
+                              child: TextFormField(
+                                maxLength: 80,
+                                keyboardType: TextInputType.name,
+                                decoration: const InputDecoration(
+                                  icon: Icon(
+                                    Icons.business,
+                                    color: Colors.white,
+                                  ),
+                                  labelStyle: TextStyle(
+                                    fontSize: 15.0,
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color:
+                                            Color.fromARGB(255, 135, 184, 224)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12)),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: Color.fromARGB(255, 1, 97, 207)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  fillColor: Color.fromARGB(228, 194, 226, 247),
+                                  filled: true,
+                                  labelText: "Comple",
+                                ),
+                                validator: (value) {
+                                  if (value!.isNotEmpty) {
+                                    return "Preencha corretamente!";
+                                  }
+                                },
+                              ),
+                            ),
+                          ]),
+                    ),
+                    SizedBox(
+                      width: sizeW,
+                      //    height: sizeW * 0.16,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              height: 70,
+                              width: sizeW * 0.30,
+                              margin: const EdgeInsets.all(6),
+                              child: TextFormField(
+                                maxLength: 80,
+                                keyboardType: TextInputType.name,
+                                decoration: const InputDecoration(
+                                  icon: Icon(
+                                    Icons.business,
+                                    color: Colors.white,
+                                  ),
+                                  labelStyle: TextStyle(
+                                    fontSize: 15.0,
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color:
+                                            Color.fromARGB(255, 135, 184, 224)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12)),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: Color.fromARGB(255, 1, 97, 207)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  fillColor: Color.fromARGB(228, 194, 226, 247),
+                                  filled: true,
+                                  labelText: "Bairro",
+                                ),
+                                validator: (value) {
+                                  if (value!.isNotEmpty) {
+                                    return "Preencha corretamente!";
+                                  }
+                                },
+                              ),
+                            ),
+                            Container(
+                              height: 70,
+                              width: sizeW * 0.30,
+                              margin: const EdgeInsets.all(6),
+                              child: TextFormField(
+                                maxLength: 80,
+                                keyboardType: TextInputType.name,
+                                decoration: const InputDecoration(
+                                  icon: Icon(
+                                    Icons.business,
+                                    color: Colors.white,
+                                  ),
+                                  labelStyle: TextStyle(
+                                    fontSize: 15.0,
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color:
+                                            Color.fromARGB(255, 135, 184, 224)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12)),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: Color.fromARGB(255, 1, 97, 207)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  fillColor: Color.fromARGB(228, 194, 226, 247),
+                                  filled: true,
+                                  labelText: "Cidade",
                                 ),
                                 validator: (value) {
                                   if (value!.isNotEmpty) {

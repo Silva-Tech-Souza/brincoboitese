@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sysvia_dash/widgets/responsive.dart';
 
 import '../controllers/MenuController.dart';
 import '../screens/dashboard/dashboard_screen.dart';
@@ -226,7 +227,9 @@ class _RightSideState extends State<RightSide> {
                     children: [
                       Container(
                         height: 45,
-                        width: sizeW * 0.10,
+                        width: !Responsive.isMobile(context)
+                            ? sizeW * 0.10
+                            : sizeW * 0.28,
                         margin: const EdgeInsets.all(6),
                         decoration: BoxDecoration(
                           color: colorsou,
@@ -261,7 +264,9 @@ class _RightSideState extends State<RightSide> {
                       ),
                       Container(
                         height: 50,
-                        width: sizeW * 0.10,
+                        width: !Responsive.isMobile(context)
+                            ? sizeW * 0.10
+                            : sizeW * 0.28,
                         margin: const EdgeInsets.all(6),
                         decoration: BoxDecoration(
                           color: colorpreciso,

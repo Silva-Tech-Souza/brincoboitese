@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/leftSide.dart';
+import '../widgets/responsive.dart';
 import '../widgets/rightSide.dart';
 
 class Login extends StatelessWidget {
@@ -19,7 +20,10 @@ class Login extends StatelessWidget {
           height: 700,
           width: 1500,
           child: Row(
-            children: const [LeftSide(), RightSide()],
+            children: [
+              !Responsive.isMobile(context) ? LeftSide() : Container(),
+              RightSide()
+            ],
           ),
         ),
       ),
