@@ -14,11 +14,17 @@ class RightSide extends StatefulWidget {
   State<RightSide> createState() => _RightSideState();
 }
 
+String empresafilieal = "";
+
 class _RightSideState extends State<RightSide> {
   final _formKey = GlobalKey<FormState>(debugLabel: '_CadastroPartesState');
   TextEditingController senha = TextEditingController();
   TextEditingController users = TextEditingController();
   bool _passwordVisible = true;
+  Color txtfreleaspre = Color.fromARGB(255, 0, 94, 138),
+      txtfreleassou = Color.fromARGB(255, 255, 255, 255);
+  Color colorsou = Color.fromARGB(255, 19, 102, 105),
+      colorpreciso = const Color.fromARGB(255, 193, 246, 248);
   checkUser() async {
     try {
       User? user = await FirebaseAuth.instance.currentUser;
@@ -63,9 +69,9 @@ class _RightSideState extends State<RightSide> {
 
   Future<String?> _authUser(String email, String senhas) async {
     if (email == null || senhas == null) {
-      var snackBar = SnackBar(
+      var snackBar = const SnackBar(
         content: Text("Preencha os campos corretamente.",
-            style: const TextStyle(color: Colors.white)),
+            style: TextStyle(color: Colors.white)),
         backgroundColor: Color.fromARGB(255, 34, 34, 34),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -80,9 +86,9 @@ class _RightSideState extends State<RightSide> {
               });
 
       if (resposta != null) {
-        var snackBar = SnackBar(
+        var snackBar = const SnackBar(
           content: Text("Email e senha não conferem",
-              style: const TextStyle(color: Colors.white)),
+              style: TextStyle(color: Colors.white)),
           backgroundColor: Color.fromARGB(255, 34, 34, 34),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -102,6 +108,8 @@ class _RightSideState extends State<RightSide> {
 
   @override
   Widget build(BuildContext context) {
+    var sizeW = MediaQuery.of(context).size.width;
+    var sizeH = MediaQuery.of(context).size.height;
     return Flexible(
       flex: 3,
       child: Container(
@@ -212,7 +220,85 @@ class _RightSideState extends State<RightSide> {
                 SizedBox(
                   height: 8,
                 ),
+                SizedBox(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 45,
+                        width: sizeW * 0.10,
+                        margin: const EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          color: colorsou,
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color.fromARGB(232, 36, 36, 36)
+                                  .withOpacity(0.3),
+                              spreadRadius: 1,
+                              blurRadius: 8,
+                              offset: const Offset(1, -1),
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: TextButton(
+                          child: Text(
+                            "Bom Retiro",
+                            style: TextStyle(color: txtfreleassou),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              empresafilieal = "bom retiro";
+                              colorpreciso =
+                                  const Color.fromARGB(255, 193, 246, 248);
+                              txtfreleassou =
+                                  Color.fromARGB(255, 255, 255, 255);
+                              txtfreleaspre = Color.fromARGB(255, 0, 94, 138);
+                              colorsou = Color.fromARGB(255, 19, 102, 105);
+                            });
+                          },
+                        ),
+                      ),
+                      Container(
+                        height: 50,
+                        width: sizeW * 0.10,
+                        margin: const EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          color: colorpreciso,
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color.fromARGB(232, 36, 36, 36)
+                                  .withOpacity(0.3),
+                              spreadRadius: 1,
+                              blurRadius: 8,
+                              offset: const Offset(1, -1),
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: TextButton(
+                          child: Text(
+                            "Brás",
+                            style: TextStyle(color: txtfreleaspre),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              empresafilieal = "bras";
+                              txtfreleaspre =
+                                  Color.fromARGB(255, 255, 255, 255);
+                              txtfreleassou = Color.fromARGB(255, 0, 94, 138);
+                              colorsou =
+                                  const Color.fromARGB(255, 193, 246, 248);
+                              colorpreciso = Color.fromARGB(255, 19, 102, 105);
+                            });
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 Container(
+                  width: sizeW * 0.50,
                   margin: EdgeInsets.only(top: 30),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -220,9 +306,9 @@ class _RightSideState extends State<RightSide> {
                       ElevatedButton(
                         style: ButtonStyle(
                             padding: MaterialStateProperty.all(
-                                EdgeInsets.fromLTRB(50, 15, 50, 15)),
+                                const EdgeInsets.fromLTRB(50, 15, 50, 15)),
                             backgroundColor: MaterialStateProperty.all(
-                                Color.fromARGB(255, 130, 51, 233))),
+                                const Color.fromARGB(255, 130, 51, 233))),
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             try {
@@ -252,7 +338,7 @@ class _RightSideState extends State<RightSide> {
                             } on FirebaseAuthException catch (e) {}
                           }
                         },
-                        child: Text(
+                        child: const Text(
                           'Entrar',
                           style: TextStyle(
                               fontSize: 20,
@@ -260,7 +346,7 @@ class _RightSideState extends State<RightSide> {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                     ],

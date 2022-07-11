@@ -1,16 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:data_table_2/data_table_2.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 
-import '../../../controllers/MenuController.dart';
-import '../../../controllers/funcionario.dart';
-import '../../../models/RecentFile.dart';
+import 'package:flutter/material.dart';
+
 import '../../../widgets/constants.dart';
-import '../../main/main_screen.dart';
 import '../dashboard_screen.dart';
 
 class RecentFiles extends StatefulWidget {
@@ -23,187 +15,300 @@ class RecentFiles extends StatefulWidget {
 class _RecentFilesState extends State<RecentFiles> {
   final db = FirebaseFirestore.instance;
   var dbfilter;
-  final List<Funcionarios> list = [];
 
-  getUsers() async {
-    final snapshot = await FirebaseDatabase.instance.ref('Users').get();
-
-    final map = snapshot.value as Map<dynamic, dynamic>;
-
-    setState(() {});
-    map.forEach((key, value) {
-      final user = Funcionarios.fromMap(value);
-
-      list.add(user);
-    });
-  }
+  final _formKey = GlobalKey<FormState>(debugLabel: '_RecentFilesState');
 
   @override
   void initState() {
     super.initState();
-    getUsers();
   }
 
   @override
   Widget build(BuildContext context) {
+    var sizeW = MediaQuery.of(context).size.width;
+    var sizeH = MediaQuery.of(context).size.height;
     return Container(
       padding: const EdgeInsets.all(defaultPadding),
       decoration: const BoxDecoration(
         color: secondaryColor,
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
-      child: StreamBuilder<QuerySnapshot>(
-        stream: db.collection("Uses").snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "Funcionários",
-                      style: TextStyle(color: Colors.white, fontSize: 17),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          cadfunionario = true;
-                          cadclientes = false;
-                          cadinsumo = false;
-                        });
-                      },
-                      icon: const Icon(
-                        Icons.add,
-                        color: Colors.white,
+      child: SingleChildScrollView(
+        child: !cadfunionario
+            ? StreamBuilder<QuerySnapshot>(
+                stream: db.collection("Funcionarios").snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return SizedBox(
+                      width: sizeW,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                "Funcionários",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 17),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    cadfunionario = true;
+                                    cadclientes = false;
+                                    cadinsumo = false;
+                                  });
+                                },
+                                icon: const Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
+                    );
+                  } else {
+                    return SizedBox(
+                      width: sizeW,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  "Funcionários",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 17),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      cadfunionario = true;
+                                      cadclientes = false;
+                                      cadinsumo = false;
+                                    });
+                                  },
+                                  icon: const Icon(
+                                    Icons.add,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ]),
+                    );
+                  }
+                })
+            : Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 60,
+                      width: sizeW,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              setState(() {
+                                funionario = false;
+                                clientes = true;
+                                insumo = false;
+                                cadfunionario = false;
+                              });
+                            },
+                            icon: const Icon(
+                              Icons.arrow_back,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          const Text(
+                            "Cadastrar Funcionário",
+                            style: TextStyle(color: Colors.white, fontSize: 17),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 6,
+                    ),
+                    SizedBox(
+                      width: sizeW * 0.25,
+                      // height: sizeW * 0.17,
+                      child: TextFormField(
+                        initialValue: numeroCliente.toString(),
+                        keyboardType: TextInputType.name,
+                        enabled: false,
+                        decoration: const InputDecoration(
+                          icon: Icon(
+                            Icons.password_outlined,
+                            color: Colors.white,
+                          ),
+                          labelStyle: TextStyle(
+                            fontSize: 15.0,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(255, 135, 184, 224)),
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(255, 1, 97, 207)),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          fillColor: Color.fromARGB(228, 194, 226, 247),
+                          filled: true,
+                          labelText: "Código",
+                        ),
+                        validator: (value) {},
+                      ),
+                    ),
+                    SizedBox(
+                      width: sizeW,
+                      //    height: sizeW * 0.16,
+                      child: TextFormField(
+                        maxLength: 80,
+                        controller: razaosocial,
+                        keyboardType: TextInputType.name,
+                        decoration: const InputDecoration(
+                          icon: Icon(
+                            Icons.business,
+                            color: Colors.white,
+                          ),
+                          labelStyle: TextStyle(
+                            fontSize: 15.0,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(255, 135, 184, 224)),
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(255, 1, 97, 207)),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          fillColor: Color.fromARGB(228, 194, 226, 247),
+                          filled: true,
+                          labelText: "Nome",
+                        ),
+                        validator: (value) {
+                          if (value!.isNotEmpty) {
+                            return "Preencha corretamente!";
+                          }
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: sizeW,
+                      //    height: sizeW * 0.16,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              height: 50,
+                              width: sizeW * 0.30,
+                              margin: const EdgeInsets.all(6),
+                              child: TextFormField(
+                                maxLength: 80,
+                                controller: razaosocial,
+                                keyboardType: TextInputType.name,
+                                decoration: const InputDecoration(
+                                  icon: Icon(
+                                    Icons.business,
+                                    color: Colors.white,
+                                  ),
+                                  labelStyle: TextStyle(
+                                    fontSize: 15.0,
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color:
+                                            Color.fromARGB(255, 135, 184, 224)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12)),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: Color.fromARGB(255, 1, 97, 207)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  fillColor: Color.fromARGB(228, 194, 226, 247),
+                                  filled: true,
+                                  labelText: "CGC/CPF",
+                                ),
+                                validator: (value) {
+                                  if (value!.isNotEmpty) {
+                                    return "Preencha corretamente!";
+                                  }
+                                },
+                              ),
+                            ),
+                            Container(
+                              height: 50,
+                              width: sizeW * 0.30,
+                              margin: const EdgeInsets.all(6),
+                              child: TextFormField(
+                                maxLength: 80,
+                                controller: razaosocial,
+                                keyboardType: TextInputType.name,
+                                decoration: const InputDecoration(
+                                  icon: Icon(
+                                    Icons.business,
+                                    color: Colors.white,
+                                  ),
+                                  labelStyle: TextStyle(
+                                    fontSize: 15.0,
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color:
+                                            Color.fromARGB(255, 135, 184, 224)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12)),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: Color.fromARGB(255, 1, 97, 207)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  fillColor: Color.fromARGB(228, 194, 226, 247),
+                                  filled: true,
+                                  labelText: "IE/RG",
+                                ),
+                                validator: (value) {
+                                  if (value!.isNotEmpty) {
+                                    return "Preencha corretamente!";
+                                  }
+                                },
+                              ),
+                            ),
+                          ]),
                     ),
                   ],
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  child: DataTable2(
-                    columnSpacing: defaultPadding,
-                    minWidth: 600,
-                    columns: const [
-                      DataColumn(
-                        label: Text(
-                          "Nome",
-                          style: TextStyle(
-                              color: Color.fromARGB(235, 255, 255, 255)),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Text(
-                          "Referência",
-                          style: TextStyle(
-                              color: Color.fromARGB(235, 255, 255, 255)),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Text(
-                          "Cargo",
-                          style: TextStyle(
-                              color: Color.fromARGB(235, 255, 255, 255)),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Text(
-                          "Ativo",
-                          style: TextStyle(
-                              color: Color.fromARGB(235, 255, 255, 255)),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Text(
-                          "Editar",
-                          style: TextStyle(
-                              color: Color.fromARGB(235, 255, 255, 255)),
-                        ),
-                      ),
-                    ],
-                    rows: List.generate(
-                      list.length,
-                      (index) => recentFileDataRow(
-                          demoRecentFiles[index], list[index]),
-                    ),
-                  ),
-                ),
-              ],
-            );
-          } else {
-            return Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    "Funcionários",
-                    style: TextStyle(color: Colors.white, fontSize: 17),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        funionario = true;
-                        cadfunionario = true;
-                        cadclientes = false;
-                        cadinsumo = false;
-                      });
-                    },
-                    icon: const Icon(
-                      Icons.add,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
               ),
-            );
-          }
-        },
       ),
     );
   }
-}
-
-DataRow recentFileDataRow(RecentFile fileInfo, Funcionarios listafunc) {
-  return DataRow(
-    cells: [
-      DataCell(
-        Row(
-          children: [
-            const Icon(Icons.person, size: 30, color: Colors.white),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-              child: Text(
-                listafunc.nome.toString(),
-                style:
-                    const TextStyle(color: Color.fromARGB(235, 255, 255, 255)),
-              ),
-            ),
-          ],
-        ),
-      ),
-      DataCell(Text(
-        listafunc.referencia.toString(),
-        style: const TextStyle(color: Color.fromARGB(235, 255, 255, 255)),
-      )),
-      DataCell(Text(
-        listafunc.cargo.toString(),
-        style: const TextStyle(color: Color.fromARGB(235, 255, 255, 255)),
-      )),
-      const DataCell(Text(
-        "Ativo",
-        style: TextStyle(color: Color.fromARGB(235, 255, 255, 255)),
-      )),
-      DataCell(
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.edit,
-            color: Color.fromARGB(255, 255, 255, 255),
-          ),
-        ),
-      ),
-    ],
-  );
 }
