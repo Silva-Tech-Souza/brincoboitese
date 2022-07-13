@@ -74,11 +74,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return SafeArea(
       child: SingleChildScrollView(
         primary: false,
-        padding: EdgeInsets.all(defaultPadding),
+        padding: const EdgeInsets.all(defaultPadding),
         child: Column(
           children: [
-            Header(),
-            SizedBox(height: defaultPadding),
+            const Header(),
+            const SizedBox(height: defaultPadding),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -90,7 +90,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       const SizedBox(height: defaultPadding),
                       if (Responsive.isMobile(context))
                         const SizedBox(height: defaultPadding),
-                      if (Responsive.isMobile(context)) const StarageDetails(),
+                      //  if (Responsive.isMobile(context)) const StarageDetails(),
 
                       usuario!.cargo.toString() == "admin" && funionario
                           ? const RecentFiles()

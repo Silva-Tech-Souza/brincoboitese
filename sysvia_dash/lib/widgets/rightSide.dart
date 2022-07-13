@@ -117,30 +117,52 @@ class _RightSideState extends State<RightSide> {
         color: Colors.white,
         child: Container(
           padding: EdgeInsets.all(50),
-          child: Form(
+          child:SingleChildScrollView(
+            child: Form(
             key: _formKey,
             child: Column(
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'Entre no sistema ',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                          letterSpacing: 1),
-                    ),
-                    Text(
-                      'SysVia',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                          color: Color.fromARGB(255, 130, 51, 233),
-                          letterSpacing: 2),
-                    ),
-                  ],
-                ),
+                !Responsive.isMobile(context)
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'Entre no sistema ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30,
+                                letterSpacing: 1),
+                          ),
+                          Text(
+                            'SysVia',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30,
+                                color: Color.fromARGB(255, 130, 51, 233),
+                                letterSpacing: 2),
+                          ),
+                        ],
+                      )
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'Entre no sistema ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30,
+                                letterSpacing: 1),
+                          ),
+                          Text(
+                            'SysVia',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30,
+                                color: Color.fromARGB(255, 130, 51, 233),
+                                letterSpacing: 2),
+                          ),
+                        ],
+                      ),
                 Container(
                     margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                     child: Text(
@@ -148,7 +170,7 @@ class _RightSideState extends State<RightSide> {
                       style: TextStyle(color: Colors.grey, fontSize: 20),
                     )),
                 SizedBox(
-                  height: 200,
+                  height: !Responsive.isMobile(context) ? 200 : 100,
                 ),
                 Container(
                   margin: EdgeInsets.only(bottom: 10),
@@ -360,6 +382,7 @@ class _RightSideState extends State<RightSide> {
               ],
             ),
           ),
+        ),
         ),
       ),
     );

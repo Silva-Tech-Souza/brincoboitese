@@ -391,6 +391,92 @@ class _RecentCleintesState extends State<RecentCleintes> {
                     const SizedBox(
                       height: 16,
                     ),
+                    Container(
+                      child: Text(
+                        "Escolha o local:",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    SizedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 45,
+                            width: sizeW * 0.10,
+                            margin: const EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                              color: colorsou1,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color.fromARGB(232, 36, 36, 36)
+                                      .withOpacity(0.3),
+                                  spreadRadius: 1,
+                                  blurRadius: 8,
+                                  offset: const Offset(1, -1),
+                                ),
+                              ],
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: TextButton(
+                              child: Text(
+                                "Bom Retiro",
+                                style: TextStyle(color: txtfreleassou1),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  empresa = "bom retiro";
+                                  colorpreciso1 =
+                                      const Color.fromARGB(255, 193, 246, 248);
+                                  txtfreleassou1 =
+                                      Color.fromARGB(255, 255, 255, 255);
+                                  txtfreleaspre1 =
+                                      Color.fromARGB(255, 0, 94, 138);
+                                  colorsou1 = Color.fromARGB(255, 19, 102, 105);
+                                });
+                              },
+                            ),
+                          ),
+                          Container(
+                            height: 50,
+                            width: sizeW * 0.10,
+                            margin: const EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                              color: colorpreciso1,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color.fromARGB(232, 36, 36, 36)
+                                      .withOpacity(0.3),
+                                  spreadRadius: 1,
+                                  blurRadius: 8,
+                                  offset: const Offset(1, -1),
+                                ),
+                              ],
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: TextButton(
+                              child: Text(
+                                "Brás",
+                                style: TextStyle(color: txtfreleaspre1),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  empresa = "bras";
+                                  txtfreleaspre1 =
+                                      Color.fromARGB(255, 255, 255, 255);
+                                  txtfreleassou1 =
+                                      Color.fromARGB(255, 0, 94, 138);
+                                  colorsou1 =
+                                      const Color.fromARGB(255, 193, 246, 248);
+                                  colorpreciso1 =
+                                      Color.fromARGB(255, 19, 102, 105);
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     SizedBox(
                       width: sizeW * 0.25,
                       // height: sizeW * 0.17,
@@ -427,86 +513,6 @@ class _RecentCleintesState extends State<RecentCleintes> {
                     ),
                     const SizedBox(
                       height: 8,
-                    ),
-                    SizedBox(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 45,
-                            width: sizeW * 0.10,
-                            margin: const EdgeInsets.all(6),
-                            decoration: BoxDecoration(
-                              color: colorsou1,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(232, 36, 36, 36)
-                                      .withOpacity(0.3),
-                                  spreadRadius: 1,
-                                  blurRadius: 8,
-                                  offset: const Offset(1, -1),
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextButton(
-                              child: Text(
-                                "Bom Retiro",
-                                style: TextStyle(color: txtfreleassou),
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  empresa = "bom retiro";
-                                  colorpreciso1 =
-                                      const Color.fromARGB(255, 193, 246, 248);
-                                  txtfreleassou1 =
-                                      Color.fromARGB(255, 255, 255, 255);
-                                  txtfreleaspre1 =
-                                      Color.fromARGB(255, 0, 94, 138);
-                                  colorsou1 = Color.fromARGB(255, 19, 102, 105);
-                                });
-                              },
-                            ),
-                          ),
-                          Container(
-                            height: 50,
-                            width: sizeW * 0.10,
-                            margin: const EdgeInsets.all(6),
-                            decoration: BoxDecoration(
-                              color: colorpreciso1,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(232, 36, 36, 36)
-                                      .withOpacity(0.3),
-                                  spreadRadius: 1,
-                                  blurRadius: 8,
-                                  offset: const Offset(1, -1),
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextButton(
-                              child: Text(
-                                "Brás",
-                                style: TextStyle(color: txtfreleaspre),
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  empresa = "bras";
-                                  txtfreleaspre1 =
-                                      Color.fromARGB(255, 255, 255, 255);
-                                  txtfreleassou1 =
-                                      Color.fromARGB(255, 0, 94, 138);
-                                  colorsou1 =
-                                      const Color.fromARGB(255, 193, 246, 248);
-                                  colorpreciso1 =
-                                      Color.fromARGB(255, 19, 102, 105);
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
                     ),
                     const SizedBox(
                       height: 8,
@@ -1172,6 +1178,8 @@ class _RecentCleintesState extends State<RecentCleintes> {
                                         onPressed: () async {
                                           await FirebaseFirestore.instance
                                               .collection('Clientes')
+                                              .doc(empresa.toString())
+                                              .collection("clireferencia")
                                               .doc(numeroCliente.toString())
                                               .set({
                                                 'id': numeroCliente.toString(),

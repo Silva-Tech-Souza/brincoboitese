@@ -21,9 +21,19 @@ class Header extends StatelessWidget {
             icon: Icon(Icons.menu),
             onPressed: context.read<MenuController>().controlMenu,
           ),
+        !Responsive.isMobile(context)
+            ? const Text(
+                "Seja Bem Vindo!",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w900,
+                  color: Color(0xFF212332),
+                ),
+              )
+            : Container(),
         if (!Responsive.isMobile(context))
           Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
-        Expanded(child: SearchField()),
+        const Expanded(child: SearchField()),
         ProfileCard()
       ],
     );
