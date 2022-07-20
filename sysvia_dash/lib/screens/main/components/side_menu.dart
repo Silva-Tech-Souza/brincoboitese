@@ -24,6 +24,7 @@ class _SideMenuState extends State<SideMenu> {
 
   @override
   Widget build(BuildContext context) {
+    var sizeW = MediaQuery.of(context).size.width;
     return Drawer(
       backgroundColor: Color.fromARGB(255, 30, 32, 48),
       child: ListView(
@@ -31,9 +32,15 @@ class _SideMenuState extends State<SideMenu> {
           DrawerHeader(
             child: Image.asset("images/images/logo.png"),
           ),
+          Container(
+            color: Color.fromARGB(115, 219, 219, 219),
+            height: 1,
+            width: sizeW * 0.5,
+          ),
+          const SizedBox(height: 25),
           DrawerListTile(
             title: "Home",
-            svgSrc: "images/icons/menu_dashbord.svg",
+            svgSrc: "images/icons/home.svg",
             press: () {
               setState(() {
                 funionario = false;
@@ -55,8 +62,13 @@ class _SideMenuState extends State<SideMenu> {
             },
           ),
           DrawerListTile(
+            title: "Serviços",
+            svgSrc: "images/icons/servico.svg",
+            press: () async {},
+          ),
+          DrawerListTile(
             title: "Clientes",
-            svgSrc: "images/icons/menu_tran.svg",
+            svgSrc: "images/icons/cliente.svg",
             press: () async {
               setState(() {
                 funionario = false;
@@ -79,14 +91,15 @@ class _SideMenuState extends State<SideMenu> {
             },
           ),
           DrawerListTile(
-            title: "Funcionários",
-            svgSrc: "images/icons/menu_tran.svg",
+            title: "Estoque",
+            svgSrc: "images/icons/estoque.svg",
             press: () async {
               setState(() {
-                funionario = true;
-                cadfunionario = false;
+                funionario = false;
                 clientes = false;
                 insumo = false;
+                cadclientes = false;
+                estoque = true;
               });
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
@@ -103,8 +116,8 @@ class _SideMenuState extends State<SideMenu> {
             },
           ),
           DrawerListTile(
-            title: "Insumo",
-            svgSrc: "images/icons/menu_task.svg",
+            title: "Matéria Prima",
+            svgSrc: "images/icons/prima.svg",
             press: () async {
               setState(() {
                 funionario = false;
@@ -127,8 +140,33 @@ class _SideMenuState extends State<SideMenu> {
             },
           ),
           DrawerListTile(
+            title: "Funcionários",
+            svgSrc: "images/icons/funcio.svg",
+            press: () async {
+              setState(() {
+                funionario = true;
+                cadfunionario = false;
+                clientes = false;
+                insumo = false;
+              });
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) => MultiProvider(
+                      providers: [
+                        ChangeNotifierProvider(
+                          create: (context) => MenuController(),
+                        ),
+                      ],
+                      child: MainScreen(),
+                    ),
+                  ),
+                  (Route<dynamic> route) => false);
+            },
+          ),
+          const SizedBox(height: 20),
+          DrawerListTile(
             title: "Sair",
-            svgSrc: "images/icons/menu_setting.svg",
+            svgSrc: "images/icons/sair.svg",
             press: () async {
               //usuario!.limpar();
               await _signOut();

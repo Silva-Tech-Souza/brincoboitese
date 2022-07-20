@@ -33,7 +33,7 @@ class Header extends StatelessWidget {
             : Container(),
         if (!Responsive.isMobile(context))
           Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
-        const Expanded(child: SearchField()),
+        Expanded(child: SearchField()),
         ProfileCard()
       ],
     );
@@ -94,39 +94,86 @@ class _ProfileCardState extends State<ProfileCard> {
 }
 
 class SearchField extends StatelessWidget {
-  const SearchField({
+  SearchField({
     Key? key,
   }) : super(key: key);
-
+  List<List<String>> tipoempresa = [
+    ["Lucas add um cliente"]
+  ];
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-      decoration: InputDecoration(
-        hintStyle: TextStyle(color: Color.fromARGB(220, 207, 207, 207)),
-        labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-        floatingLabelStyle:
-            TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-        hintText: "Pesquisar",
-        fillColor: secondaryColor,
-        filled: true,
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
-        ),
-        suffixIcon: InkWell(
-          onTap: () {},
-          child: Container(
-            padding: EdgeInsets.all(defaultPadding * 0.75),
-            margin: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-            decoration: BoxDecoration(
-              color: Color.fromARGB(255, 130, 51, 233),
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
-            ),
-            child: SvgPicture.asset("images/icons/Search.svg"),
-          ),
-        ),
+    return Container(
+      margin: const EdgeInsets.only(left: defaultPadding),
+      padding: const EdgeInsets.symmetric(
+        horizontal: defaultPadding,
+        vertical: defaultPadding / 2,
       ),
+      decoration: BoxDecoration(
+        color: secondaryColor,
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        border: Border.all(color: Colors.white10),
+      ),
+      child: SizedBox(
+        height: 30,
+        width: 40,
+        child: DropdownButton<String>(
+          onChanged: (_) {},
+          // Hide the default underline
+          underline: Container(),
+          hint: const Center(
+              child: Text(
+            'Notificação',
+            style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+          )),
+          icon: const Icon(
+            Icons.arrow_drop_down,
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
+          isExpanded: true,
+          style: const TextStyle(
+            fontSize: 14,
+          ),
+          // The   list of options
+          items: tipoempresa[0]
+              .map((e) => DropdownMenuItem(
+                    onTap: () {},
+                    value: e,
+                    child: Container(
+                        width: 150,
+                        height: 120,
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                          children: [
+                            Text(
+                              e.toString(),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                  fontSize: 15,
+                                  color: Color.fromARGB(255, 46, 46, 46),
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              DateTime.now().toString(),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                  fontSize: 15,
+                                  color: Color.fromARGB(255, 46, 46, 46),
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        )),
+                  ))
+              .toList(),
+        ),
+      ), /*IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.notification_important,
+              size: 30, color: Colors.white),
+        )*/
     );
   }
 }

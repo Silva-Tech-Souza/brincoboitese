@@ -13,14 +13,14 @@ import '../../../widgets/constants.dart';
 import '../../main/main_screen.dart';
 import '../dashboard_screen.dart';
 
-class RecentDespesas extends StatefulWidget {
-  const RecentDespesas({Key? key}) : super(key: key);
+class RecentEstoque extends StatefulWidget {
+  const RecentEstoque({Key? key}) : super(key: key);
 
   @override
-  _RecentDespesasState createState() => _RecentDespesasState();
+  RecentEstoqueState createState() => RecentEstoqueState();
 }
 
-class _RecentDespesasState extends State<RecentDespesas> {
+class RecentEstoqueState extends State<RecentEstoque> {
   final db = FirebaseFirestore.instance;
   var dbfilter;
   final List<Funcionarios> list = [];
@@ -56,10 +56,6 @@ class _RecentDespesasState extends State<RecentDespesas> {
           )),
           DataCell(Text(
             documentSnapshot.get('celular').toString(),
-            style: const TextStyle(color: Colors.white, fontSize: 17),
-          )),
-          DataCell(Text(
-            documentSnapshot.get('email').toString(),
             style: const TextStyle(color: Colors.white, fontSize: 17),
           )),
           DataCell(Text(
@@ -126,7 +122,7 @@ class _RecentDespesasState extends State<RecentDespesas> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: const [
                               Text(
-                                "Matéria Prima",
+                                "Estoque",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 20),
                               ),
@@ -269,7 +265,7 @@ class _RecentDespesasState extends State<RecentDespesas> {
                           label: TextButton(
                             onPressed: () {},
                             child: const Text(
-                              'Nome do Produto',
+                              'Nome',
                               style: TextStyle(
                                   color: Color.fromARGB(212, 182, 182, 182),
                                   fontSize: 17),
@@ -280,28 +276,7 @@ class _RecentDespesasState extends State<RecentDespesas> {
                           label: TextButton(
                             onPressed: () {},
                             child: const Text(
-                              'Unidade',
-                              style: TextStyle(
-                                  color: Color.fromARGB(212, 182, 182, 182),
-                                  fontSize: 17),
-                            ),
-                          ),
-                        ),
-                        DataColumn(
-                            label: TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            'Estoque',
-                            style: TextStyle(
-                                color: Color.fromARGB(212, 182, 182, 182),
-                                fontSize: 17),
-                          ),
-                        )),
-                        DataColumn(
-                          label: TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              'Custo',
+                              'Preço Uni.',
                               style: TextStyle(
                                   color: Color.fromARGB(212, 182, 182, 182),
                                   fontSize: 17),
@@ -312,7 +287,18 @@ class _RecentDespesasState extends State<RecentDespesas> {
                           label: TextButton(
                             onPressed: () {},
                             child: const Text(
-                              'Status',
+                              'Preço Total',
+                              style: TextStyle(
+                                  color: Color.fromARGB(212, 182, 182, 182),
+                                  fontSize: 17),
+                            ),
+                          ),
+                        ),
+                        DataColumn(
+                          label: TextButton(
+                            onPressed: () {},
+                            child: const Text(
+                              'Quantidade',
                               style: TextStyle(
                                   color: Color.fromARGB(212, 182, 182, 182),
                                   fontSize: 17),
@@ -329,7 +315,7 @@ class _RecentDespesasState extends State<RecentDespesas> {
                                   fontSize: 17),
                             ),
                           ),
-                        ),
+                        )
                       ],
                       rows: _createRows(snapshot.data),
                     ),
@@ -350,7 +336,7 @@ class _RecentDespesasState extends State<RecentDespesas> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: const [
                               Text(
-                                "Matéria Prima",
+                                "Estoque",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 20),
                               ),

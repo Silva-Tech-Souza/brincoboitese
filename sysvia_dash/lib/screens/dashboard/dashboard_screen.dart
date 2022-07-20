@@ -6,6 +6,7 @@ import '../../controllers/user.dart';
 import '../../widgets/constants.dart';
 import '../../widgets/responsive.dart';
 import 'components/clientes.dart';
+import 'components/estoque.dart';
 import 'components/header.dart';
 
 import 'components/insumo.dart';
@@ -24,12 +25,18 @@ Users? usuario = Users(id: FirebaseAuth.instance.currentUser!.uid.toString());
 bool funionario = false;
 bool clientes = false;
 bool insumo = false;
+bool estoque = false;
 bool cadfunionario = false;
 bool cadclientes = false;
 bool cadinsumo = false;
 bool get tiposessao => funionario;
 set tiposessao(bool tipos) {
   funionario = tipos;
+}
+
+bool get tiposessaoestoque => estoque;
+set tiposessaoestoque(bool tipos) {
+  estoque = tipos;
 }
 
 bool get tiposessaoclientes => clientes;
@@ -99,7 +106,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       usuario!.cargo.toString() == "admin" && clientes
                           ? RecentCleintes()
                           : Container(),
-
+                      usuario!.cargo.toString() == "admin" && estoque
+                          ? RecentEstoque()
+                          : Container(),
                       usuario!.cargo.toString() == "admin" && insumo
                           ? RecentDespesas()
                           : Container(),
