@@ -74,6 +74,7 @@ class _SideMenuState extends State<SideMenu> {
                 funionario = false;
                 clientes = true;
                 insumo = false;
+                estoque = false;
                 cadclientes = false;
               });
               Navigator.of(context).pushAndRemoveUntil(
@@ -123,6 +124,7 @@ class _SideMenuState extends State<SideMenu> {
                 funionario = false;
                 clientes = false;
                 cadinsumo = false;
+                estoque = false;
                 insumo = true;
               });
               Navigator.of(context).pushAndRemoveUntil(
@@ -148,6 +150,7 @@ class _SideMenuState extends State<SideMenu> {
                 cadfunionario = false;
                 clientes = false;
                 insumo = false;
+                estoque = false;
               });
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(

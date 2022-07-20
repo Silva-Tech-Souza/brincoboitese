@@ -26,15 +26,16 @@ class RecentCleintes extends StatefulWidget {
 class _RecentCleintesState extends State<RecentCleintes> {
   final db = FirebaseFirestore.instance;
   var dbfilter;
-  Color txtfreleaspre = Color.fromARGB(255, 0, 94, 138),
-      txtfreleassou = Color.fromARGB(255, 255, 255, 255);
-  Color colorsou = Color.fromARGB(255, 19, 102, 105),
-      colorpreciso = const Color.fromARGB(255, 193, 246, 248);
 
   Color txtfreleaspre1 = Color.fromARGB(255, 0, 94, 138),
       txtfreleassou1 = Color.fromARGB(255, 255, 255, 255);
   Color colorsou1 = Color.fromARGB(255, 19, 102, 105),
       colorpreciso1 = const Color.fromARGB(255, 193, 246, 248);
+
+  Color colorpreciso = const Color.fromARGB(255, 130, 51, 233);
+  Color txtfreleassou = const Color.fromARGB(255, 130, 51, 233);
+  Color txtfreleaspre = Color.fromARGB(255, 255, 255, 255);
+  Color colorsou = Color.fromARGB(0, 19, 102, 105);
   bool pessoa = true;
   int? numeroCliente;
   var maskFormatcpf = MaskTextInputFormatter(
@@ -572,73 +573,73 @@ class _RecentCleintesState extends State<RecentCleintes> {
                             height: 50,
                             width: sizeW * 0.30,
                             margin: const EdgeInsets.all(6),
-                            decoration: BoxDecoration(
-                              color: colorsou,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(232, 36, 36, 36)
-                                      .withOpacity(0.3),
-                                  spreadRadius: 1,
-                                  blurRadius: 8,
-                                  offset: const Offset(1, -1),
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextButton(
-                              child: Text(
-                                "Pessoa Jurídica",
-                                style: TextStyle(color: txtfreleassou),
-                              ),
-                              onPressed: () {
+                            child: InkWell(
+                              onTap: () async {
                                 setState(() {
                                   pessoa = false;
                                   colorpreciso =
-                                      const Color.fromARGB(255, 193, 246, 248);
+                                      Color.fromARGB(0, 193, 246, 248);
                                   txtfreleassou =
-                                      Color.fromARGB(255, 255, 255, 255);
+                                      const Color.fromARGB(255, 255, 255, 255);
                                   txtfreleaspre =
-                                      Color.fromARGB(255, 0, 94, 138);
-                                  colorsou = Color.fromARGB(255, 19, 102, 105);
+                                      const Color.fromARGB(255, 130, 51, 233);
+                                  colorsou =
+                                      const Color.fromARGB(255, 130, 51, 233);
                                 });
                               },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 7),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 3, color: txtfreleassou),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5)),
+                                    color: colorsou),
+                                child: Text(
+                                  "Pessoa Jurídica",
+                                  style: TextStyle(
+                                      fontSize: 20, color: txtfreleassou),
+                                ),
+                              ),
                             ),
                           ),
                           Container(
                             height: 50,
                             width: sizeW * 0.30,
                             margin: const EdgeInsets.all(6),
-                            decoration: BoxDecoration(
-                              color: colorpreciso,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(232, 36, 36, 36)
-                                      .withOpacity(0.3),
-                                  spreadRadius: 1,
-                                  blurRadius: 8,
-                                  offset: const Offset(1, -1),
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextButton(
-                              child: Text(
-                                "Pessoa Física",
-                                style: TextStyle(color: txtfreleaspre),
-                              ),
-                              onPressed: () {
+                            child: InkWell(
+                              onTap: () async {
                                 setState(() {
-                                  pessoa = true;
+                                  pessoa = false;
+                                  colorpreciso =
+                                      const Color.fromARGB(255, 130, 51, 233);
+                                  txtfreleassou =
+                                      const Color.fromARGB(255, 130, 51, 233);
                                   txtfreleaspre =
                                       Color.fromARGB(255, 255, 255, 255);
-                                  txtfreleassou =
-                                      Color.fromARGB(255, 0, 94, 138);
-                                  colorsou =
-                                      const Color.fromARGB(255, 193, 246, 248);
-                                  colorpreciso =
-                                      Color.fromARGB(255, 19, 102, 105);
+                                  colorsou = Color.fromARGB(0, 19, 102, 105);
                                 });
                               },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 7),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 3, color: txtfreleaspre),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5)),
+                                    color: colorpreciso),
+                                child: Text(
+                                  "Pessoa Física",
+                                  style: TextStyle(
+                                      fontSize: 20, color: txtfreleaspre),
+                                ),
+                              ),
                             ),
                           ),
                         ],
@@ -653,84 +654,53 @@ class _RecentCleintesState extends State<RecentCleintes> {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
-                    SizedBox(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 45,
-                            width: sizeW * 0.10,
-                            margin: const EdgeInsets.all(6),
-                            decoration: BoxDecoration(
-                              color: colorsou1,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(232, 36, 36, 36)
-                                      .withOpacity(0.3),
-                                  spreadRadius: 1,
-                                  blurRadius: 8,
-                                  offset: const Offset(1, -1),
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextButton(
-                              child: Text(
-                                "Bom Retiro",
-                                style: TextStyle(color: txtfreleassou1),
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  empresa = "bom retiro";
-                                  colorpreciso1 =
-                                      const Color.fromARGB(255, 193, 246, 248);
-                                  txtfreleassou1 =
-                                      Color.fromARGB(255, 255, 255, 255);
-                                  txtfreleaspre1 =
-                                      Color.fromARGB(255, 0, 94, 138);
-                                  colorsou1 = Color.fromARGB(255, 19, 102, 105);
-                                });
-                              },
-                            ),
-                          ),
-                          Container(
-                            height: 50,
-                            width: sizeW * 0.10,
-                            margin: const EdgeInsets.all(6),
-                            decoration: BoxDecoration(
-                              color: colorpreciso1,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(232, 36, 36, 36)
-                                      .withOpacity(0.3),
-                                  spreadRadius: 1,
-                                  blurRadius: 8,
-                                  offset: const Offset(1, -1),
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextButton(
-                              child: Text(
-                                "Brás",
-                                style: TextStyle(color: txtfreleaspre1),
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  empresa = "bras";
-                                  txtfreleaspre1 =
-                                      Color.fromARGB(255, 255, 255, 255);
-                                  txtfreleassou1 =
-                                      Color.fromARGB(255, 0, 94, 138);
-                                  colorsou1 =
-                                      const Color.fromARGB(255, 193, 246, 248);
-                                  colorpreciso1 =
-                                      Color.fromARGB(255, 19, 102, 105);
-                                });
-                              },
-                            ),
-                          ),
-                        ],
+                    Container(
+                      width: sizeW * 0.25,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      height: 38,
+                      child: DropdownButton<String>(
+                        onChanged: (_) {},
+                        // Hide the default underline
+                        underline: Container(),
+                        hint: const Center(
+                            child: Text(
+                          'Bom Retiro',
+                          style:
+                              TextStyle(color: Color.fromARGB(255, 31, 31, 31)),
+                        )),
+                        icon: const Icon(
+                          Icons.arrow_drop_down,
+                          color: Color.fromARGB(255, 31, 31, 31),
+                        ),
+                        isExpanded: true,
+                        style: const TextStyle(
+                          fontSize: 14,
+                        ),
+                        // The   list of options
+                        items: tipoempresa[0]
+                            .map((e) => DropdownMenuItem(
+                                  onTap: () {},
+                                  value: e,
+                                  child: Container(
+                                    width: 80,
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      e.toString(),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          fontSize: 15,
+                                          color:
+                                              Color.fromARGB(255, 46, 46, 46),
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ))
+                            .toList(),
                       ),
                     ),
                     SizedBox(
