@@ -1,72 +1,150 @@
 <?php
-
-session_start();
-
-
-include 'config/funcoes.php';
-include 'config/mysql.php';
-
-$id_admin = (isset($_SESSION['id_admin'])) ? $_SESSION['id_admin'] : '';
-
-if ($id_admin != NULL)
-{
-	header("location: sistema.php");
-	exit;
-}
-
+	session_start();
+	error_reporting(0);
+	include_once("includes/config.php");
+	if($_SESSION['userlogin']>0){
+		header('location:index.php');
+	}elseif(isset($_POST['login'])){
+		$_SESSION['fistname'] = "";
+		$_SESSION['id'] = "";
+		$_SESSION['idfilial'] = "";
+		$_SESSION['userlogin'] = $_POST['username'];
+		$username = htmlspecialchars($_POST['username']);
+		$password = htmlspecialchars($_POST['password']);
+		$sql = "SELECT id,UserName,Password,FirstName,filial from users where UserName=:username";
+		$query = $dbh->prepare($sql);
+		$query->bindParam(':username',$username,PDO::PARAM_STR);
+		$query-> execute();
+		$results=$query->fetchAll(PDO::FETCH_OBJ);
+	
+		if($query->rowCount() > 0){
+			
+			foreach ($results as $row) {
+				$hashpass=$row->Password;
+				$_SESSION['fistname']=$row->FirstName;
+				$_SESSION['idfilial'] = $row->filial;
+				$_SESSION['id'] =  $row->id;
+			}//verifying Password
+		
+			if (password_verify($password, $hashpass)) {
+				$_SESSION['userlogin']=$_POST['username'];
+				$sql3 = "UPDATE `users` SET `ativo`= 'true' WHERE id = :id ";
+				$query3 = $dbh->prepare($sql3);
+		        $query3->bindParam(':id',	$_SESSION['id'],PDO::PARAM_INT);
+			    $query3-> execute();
+				echo "<script>window.location.href= 'index.php'; </script>";
+			}
+			else {
+				$wrongpassword='
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				<strong>Alerta</strong> <b class="alert-link">Senha: </b>Você digitou a senha errada.
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>';
+			}
+		}
+		//if username or email not found in database
+		else{
+			$wrongusername='
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				<strong>Alerta</strong> <b class="alert-link">Código: </b> 
+				Você digitou um nome de usuário errado.
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>';
+		}
+	}
 ?>
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-<!-- BEGIN HEAD -->
-<head>
-   <meta charset="utf-8" />
-   <title>Login - <?php echo $sistema.' v. '.$versao; ?></title>
-   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-   <meta content="" name="description" />
-   <meta content="" name="author" />
-   <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-   <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-   <link href="css/style.css" rel="stylesheet" />
-   <link href="css/style-responsive.css" rel="stylesheet" />
-   <link href="css/style-default.css" rel="stylesheet" id="style_color" />
-</head>
-<!-- END HEAD -->
-<!-- BEGIN BODY -->
-<body class="lock">
-    <div class="lock-header">
-        <!-- BEGIN LOGO -->
-            <img src="img/logob.png" alt="<?php echo $sistema; ?>" style="max-width:250px;" class="center">
-        <!-- END LOGO -->
-    </div>
-    <div class="login-wrap">
-        <div class="metro single-size cinza">
-            <div class="locked">
-                <i class="icon-lock"></i>
-                <span>Identificação</span>
-            </div>
-        </div>
-        <form action="checar.php" method="post">
-        <div class="metro double-size green">
-                <div class="input-append lock-input">
-                    <input type="text" class="" placeholder="Usuário" name="login">
-                </div>
-        </div>
-        <div class="metro double-size green">
-                <div class="input-append lock-input">
-                    <input type="password" class="" placeholder="Senha" name="senha">
-                </div>
-        </div>
-        <div class="metro single-size cinza login">
-                <button type="submit" class="btn login-btn">
-                    Entrar
-                    <i class=" icon-long-arrow-right"></i>
-                </button>
-           
-        </div> </form>
-    </div>
-</body>
-<!-- END BODY -->
+<html lang="pt_BR">
+		<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+		<meta name="description" content="Smarthr - Bootstrap Admin Template">
+		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+		<meta name="author" content="Dreamguys - Bootstrap Admin Template">
+		<meta name="robots" content="noindex, nofollow">
+		<title>Login</title>
+		
+		<!-- Favicon -->
+		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		
+		<!-- Fontawesome CSS -->
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+		
+		<!-- Main CSS -->
+		<link rel="stylesheet" href="assets/css/style.css">
+		
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body class="account-page">
+	
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+			<div class="account-content">
+				<div class="container">
+					<!-- Account Logo -->
+					<div class="account-logo">
+						<a href="index.php"><img src="assets/img/logo2.png" alt="Company Logo"></a>
+					</div>
+					<!-- /Account Logo -->
+					
+					<div class="account-box">
+						<div class="account-wrapper">
+							<h3 class="account-title">Admin Login</h3>
+							<!-- Account Form -->
+							<form method="POST" enctype="multipart/form-data">
+								<div class="form-group">
+									<label>Código</label>
+									
+									<input class="form-control" name="username" required type="text">
+								</div>
+								
+								<?php if($wrongusername){echo $wrongusername;}?>
+								<div class="form-group">
+									<div class="row">
+										<div class="col">
+											<label>Senha</label>
+										</div>
+									</div>
+									<input class="form-control" name="password" required type="password">
+								</div>
+								<?php if($wrongpassword){echo $wrongpassword;}?>
+								
+								<div class="form-group text-center">
+									<button class="btn btn-primary account-btn" name="login" type="submit">Login</button>
+										
+								</div>
+									
+					
+							</form>
+							<!-- /Account Form -->
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Main Wrapper -->
+		
+		<!-- jQuery -->
+		<script src="assets/js/jquery-3.2.1.min.js"></script>
+		
+		<!-- Bootstrap Core JS -->
+		<script src="assets/js/popper.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		
+		<!-- Custom JS -->
+		<script src="assets/js/app.js"></script>
+		
+	</body>
 </html>
