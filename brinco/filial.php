@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 error_reporting(0);
 include_once('includes/config.php');
@@ -55,6 +55,8 @@ if (isset($_POST['add_filial'])) {
 		echo "<script>alert('$th');</script>";
 	}
 	$_POST['add_filial'] = null;
+	
+	
 }
 ?>
 <!DOCTYPE html>
@@ -134,31 +136,59 @@ if (isset($_POST['add_filial'])) {
 				</div>
 				<!-- /Page Header -->
 				<!-- Search Filter -->
+				<form   method="POST" enctype="multipart/form-data">
 				<div class="row filter-row">
+					
 					<div class="col-sm-6 col-md-3">
 						<div class="form-group form-focus">
-							<input type="text" class="form-control floating">
+							<input type="text" name="pesqid" class="form-control floating">
 							<label class="focus-label">ID</label>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-3">
 						<div class="form-group form-focus">
-							<input type="text" class="form-control floating">
+							<input type="text" name="pesqname" class="form-control floating">
 							<label class="focus-label">Nome da Filial</label>
 						</div>
 					</div>
 
 					<div class="col-sm-6 col-md-3">
-						<a href="#" class="btn btn-success btn-block"> Pesquisar </a>
+						<button type="submit" name="pesq_filial" id="pesq_filial" class="btn btn-success btn-block"> Pesquisar</button>
 					</div>
 				</div>
+				</form>
 				<!-- Search Filter -->
 				<!-- user profiles list starts her -->
 
 				<div class="row staff-grid-row">
 					<?php
-					$sql = "SELECT * FROM filiais";
-					$query = $dbh->prepare($sql);
+					if(isset($_POST['pesq_filial'])){
+						$pesqid = $_POST['pesqid'];
+						$pesqname = $_POST["pesqname"];
+					
+						if(isset($pesqid) && $pesqname == null || $pesqname =="" ){
+							$sql = "SELECT * FROM filiais WHERE  id = :pesqid ";
+							$query = $dbh->prepare($sql);
+							$query->bindParam(':pesqid', $pesqid, PDO::PARAM_INT);
+							
+						}else if(isset($pesqname) && $pesqid == null || $pesqid ==""){
+							$sql = "SELECT * FROM filiais WHERE  nomefantasia = :pesqname ";
+							$query = $dbh->prepare($sql);
+							$query->bindParam(':pesqname', $pesqname, PDO::PARAM_STR);
+						
+						}else if(isset($pesqname) && isset($pesqid)){
+							$sql = "SELECT * FROM filiais WHERE  id = :pesqid && nomefantasia = :pesqname ";
+							$query = $dbh->prepare($sql);
+							$query->bindParam(':pesqid', $pesqid, PDO::PARAM_INT);
+							$query->bindParam(':pesqname', $pesqname, PDO::PARAM_STR);
+							
+						}
+					}else{
+						$sql = "SELECT * FROM filiais";
+						$query = $dbh->prepare($sql);
+					}
+					$_POST['pesq_filial'] = null;
+					
 					$query->execute();
 					$results = $query->fetchAll(PDO::FETCH_OBJ);
 					$cnt = 1;
@@ -168,7 +198,7 @@ if (isset($_POST['add_filial'])) {
 							<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
 								<div class="profile-widget">
 									<div class="profile-img">
-										<img src="assets\img\logo2" style="width: 50px;" alt="picture">
+										<img src="assets\img\logo2.png" style="width: 50px;" alt="picture">
 									</div>
 									<div class="dropdown profile-action">
 										<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>

@@ -5,7 +5,31 @@
 	if(strlen($_SESSION['userlogin'])==0){
 		header('location:login.php');
 	}
+	
+	if (isset($_POST['add_cargo'])) {
+	    
+	    $datacriacao = date('d/m/Y');
+		$idcriador = $_SESSION['id'];
+		$nomecargo = $_POST['nomecargo'];
+		
+		$sql = "INSERT INTO cargo(cargo, idcriador, datacriacao, status) VALUES (:nomecargo, :idcriador, :datacriacao, 'on')";
+	   $query = $dbh->prepare($sql);
+		    $query->bindParam(':nomecargo', $nomecargo, PDO::PARAM_STR);
+		    $query->bindParam(':idcriador', $idcriador, PDO::PARAM_INT);
+		    $query->bindParam(':datacriacao', $datacriacao, PDO::PARAM_STR);
+		    
+		    $query->execute();
+	   
+	    
+	}
+	
+	
+	
+	$_POST['add_cargo'] = null;
+	
  ?>
+ 
+ 
 <!DOCTYPE html>
 <html lang="pt">
     <head>
@@ -15,7 +39,7 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>Roles & Permission - HRMS admin template</title>
+        <title>Cargos</title>
 		
 		<!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
@@ -47,7 +71,7 @@
 			<!-- /Header -->
 			
 			<!-- Sidebar -->
-            <?php include_once("includes/setting_sidebar.php");?>
+            <?php include_once("includes/sidebar.php");?>
 			<!-- /Sidebar -->
 			
 			<!-- Page Wrapper -->
@@ -68,131 +92,61 @@
 					
 					<div class="row">
 						<div class="col-sm-4 col-md-4 col-lg-4 col-xl-3">
-							<a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#add_role"><i class="fa fa-plus"></i> Adicionar Funções</a>
+							<a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#add_role">
+							    <i class="fa fa-plus"></i> Adicionar Cargos</a>
+							    	<form method="POST">
+						    	 <input type="submit" class="btn btn-primary btn-block " name="arquivados" value="<?php if($_POST['arquivados'] == 'Ativos'){echo 'Arquivados'; }else{ echo 'Ativos'; }?>" >   
+							    	</form>
+							    	
+							    	
 							<div class="roles-menu">
 								<ul>
-									<li class="active">
-										<a href="javascript:void(0);">Administrador
-											<span class="role-action">
-												<span class="action-circle large" data-toggle="modal" data-target="#edit_role">
-													<i class="material-icons">edit</i>
-												</span>
-												<span class="action-circle large delete-btn" data-toggle="modal" data-target="#delete_role">
-													<i class="material-icons">delete</i>
-												</span>
-											</span>
-										</a>
+								    <?php 
+							
+								    if ($_POST['arquivados'] == 'Ativos') {
+								        $sql3 = "SELECT * from cargo WHERE status = 'off'";
+								    $queryServer = $dbh -> prepare($sql3);
+									$queryServer->execute();
+	                                
+	                                $_POST['arquivados'] = null;
+                                    }else{
+	                                $sql3 = "SELECT * from cargo WHERE status = 'on'";
+								    $queryServer = $dbh -> prepare($sql3);
+									$queryServer->execute();
+								
+									$_POST['arquivados'] = 'asdasdasd';
+                                	}
+                                	$_POST['arquivados']  =null;
+								    
+									$result2 = $queryServer->fetchAll(PDO::FETCH_OBJ);
+									
+									if($queryServer->rowCount() > 0){
+											    foreach($result2 as $row)
+											{    
+								    
+								    $idcargo2 = $row->id;
+								    
+								    ?>
+									<li class="">
+								
+								    <?php echo $_POST['arquivados']?>
+										  
+										  <a  href="<?php echo 'includes\modals\roles\delete.php?idcargo='.$row->id; ?>">
+										
+													<?php echo $row->cargo?>
+                                                    <i  class="material-icons">edit</i>
+													<i  class="material-icons">delete</i>
+											
+										
+										  </a>
+										  
 									</li>
-									<li>
-										<a href="javascript:void(0);">CEO
-											<span class="role-action">
-												<span class="action-circle large" data-toggle="modal" data-target="#edit_role">
-													<i class="material-icons">edit</i>
-												</span>
-												<span class="action-circle large delete-btn" data-toggle="modal" data-target="#delete_role">
-													<i class="material-icons">delete</i>
-												</span>
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:void(0);">Manager
-											<span class="role-action">
-												<span class="action-circle large" data-toggle="modal" data-target="#edit_role">
-													<i class="material-icons">edit</i>
-												</span>
-												<span class="action-circle large delete-btn" data-toggle="modal" data-target="#delete_role">
-													<i class="material-icons">delete</i>
-												</span>
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:void(0);">Lider de Time
-											<span class="role-action">
-												<span class="action-circle large" data-toggle="modal" data-target="#edit_role">
-													<i class="material-icons">edit</i>
-												</span>
-												<span class="action-circle large delete-btn" data-toggle="modal" data-target="#delete_role">
-													<i class="material-icons">delete</i>
-												</span>
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:void(0);">Contador
-											<span class="role-action">
-												<span class="action-circle large" data-toggle="modal" data-target="#edit_role">
-													<i class="material-icons">edit</i>
-												</span>
-												<span class="action-circle large delete-btn" data-toggle="modal" data-target="#delete_role">
-													<i class="material-icons">delete</i>
-												</span>
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:void(0);">Web Developer
-											<span class="role-action">
-												<span class="action-circle large" data-toggle="modal" data-target="#edit_role">
-													<i class="material-icons">edit</i>
-												</span>
-												<span class="action-circle large delete-btn" data-toggle="modal" data-target="#delete_role">
-													<i class="material-icons">delete</i>
-												</span>
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:void(0);">Web Designer
-											<span class="role-action">
-												<span class="action-circle large" data-toggle="modal" data-target="#edit_role">
-													<i class="material-icons">edit</i>
-												</span>
-												<span class="action-circle large delete-btn" data-toggle="modal" data-target="#delete_role">
-													<i class="material-icons">delete</i>
-												</span>
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:void(0);">HR
-											<span class="role-action">
-												<span class="action-circle large" data-toggle="modal" data-target="#edit_role">
-													<i class="material-icons">edit</i>
-												</span>
-												<span class="action-circle large delete-btn" data-toggle="modal" data-target="#delete_role">
-													<i class="material-icons">delete</i>
-												</span>
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:void(0);">UI/UX Developer
-											<span class="role-action">
-												<span class="action-circle large" data-toggle="modal" data-target="#edit_role">
-													<i class="material-icons">edit</i>
-												</span>
-												<span class="action-circle large delete-btn" data-toggle="modal" data-target="#delete_role">
-													<i class="material-icons">delete</i>
-												</span>
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:void(0);">SEO Analyst
-											<span class="role-action">
-												<span class="action-circle large" data-toggle="modal" data-target="#edit_role">
-													<i class="material-icons">edit</i>
-												</span>
-												<span class="action-circle large delete-btn" data-toggle="modal" data-target="#delete_role">
-													<i class="material-icons">delete</i>
-												</span>
-											</span>
-										</a>
-									</li>
+									
+								<?php }}?>
+									
 								</ul>
 							</div>
+						
 						</div>
 						<div class="col-sm-8 col-md-8 col-lg-8 col-xl-9">
 							<h6 class="card-title m-b-20">Acesso ao módulo</h6>

@@ -81,15 +81,7 @@ if (strlen($_SESSION['userlogin']) == 0) {
 							<div class="card-body">
 								<span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
 								<div class="dash-widget-info">
-								    	<?php
-					$sql4 = "SELECT id from pedidos WHERE idfilial = :idfilial";
-					$query4 = $dbh->prepare($sql4);
-					$query4->bindParam(':idfilial', $_SESSION['idfilial'],PDO::PARAM_STR);
-					$query4->execute();
-					$results4 = $query4->fetchAll(PDO::FETCH_OBJ);
-					$numpedidos = $query4->rowCount();
-					?>
-									<h3><?php echo $numpedidos; ?></h3>
+									<h3>2</h3>
 									<span>Pedi. Abertos</span>
 								</div>
 							</div>
@@ -131,19 +123,11 @@ if (strlen($_SESSION['userlogin']) == 0) {
 					</div>
 					<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
 						 <a href="employees.php">
-						     	<?php
-					$sql2 = "SELECT * from users WHERE ativo = 'true' && filial = :filial";
-					$query2 = $dbh->prepare($sql2);
-					$query2->bindParam(':filial', $_SESSION['idfilial'],PDO::PARAM_STR);
-					$query2->execute();
-					$results2 = $query2->fetchAll(PDO::FETCH_OBJ);
-					$colabativ2 = $query2->rowCount();
-					?>
 						<div class="card dash-widget">
 							<div class="card-body">
 								<span class="dash-widget-icon"><i class="fa fa-user"></i></span>
 								<div class="dash-widget-info">
-									<h3><?php echo $colabativ2; ?></h3>
+									<h3>1</h3>
 									<span>Colab. Ativos</span>
 								</div>
 							</div>
@@ -154,64 +138,112 @@ if (strlen($_SESSION['userlogin']) == 0) {
 
 				<div class="card-footer" style="
     margin-bottom: 10px;">
-								<a href="projects.php">Ver Todos os Pedidos Pendentes</a>
+								<a href="projects.php">Ver todos os pedidos</a>
 							</div>
-								<div class="row">
-								    	<?php 	
-								$sql5 = "SELECT id from pedidos WHERE idfilial = :idfilial";
-					$query5 = $dbh->prepare($sql5);
-					$query5->bindParam(':idfilial', $_SESSION['idfilial'],PDO::PARAM_STR);
-					$query5->execute();
-					$results5 = $query5->fetchAll(PDO::FETCH_OBJ);
-					if ($query5->rowCount() > 0) {
-						foreach ($results5 as $row) {
-						    
-					 ?> <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3"><div class="card">
-								<div class="card-body">
-									<div class="dropdown dropdown-action profile-action">
-										<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-										<div class="dropdown-menu dropdown-menu-right">
-											<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_project"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-											<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_project"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-										</div>
-									</div>
-									<h4 class="project-title"><a href="project-view.php">Office Management</a></h4>
-									<small class="block text-ellipsis m-b-15">
-										<span class="text-xs">1</span> <span class="text-muted">tarefas abertas, </span>
-										<span class="text-xs">9</span> <span class="text-muted">tarefas concluidas</span>
-									</small>
-									<p class="text-muted">Lorem Ipsum is simply dummy text of the printing and
-										typesetting industry. When an unknown printer took a galley of type and
+				<div class="row pb-10">
+					<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+						<div class="card-box height-100-p widget-style3">
+							<div id='list1' class="board-list" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+
+								<div class="list-title">
+									Pedidos Recentes
+									
+								</div>
+								
+								<div id='card1' class="card" draggable="true" ondragstart="dragStart(event)" style="
+    margin: 0;"
+>
+									<tr>
+										<td>
+											<row class="row">
+												<div class="col-xl-10 col-lg-10 col-md-10 ">
+													<h4><a href="project-view.php">Pedidos teste</a></h4>
+												</div>
+												<div class="col-xl-1 col-lg-1 col-md-1 " style="
+    margin: 0px;
+    padding: 0px;
+">
+													<div class="dropdown dropdown-action">
+														<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+														<div class="dropdown-menu dropdown-menu-left">
+															<a class="dropdown-item" href="project-view.php"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+															<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														</div>
+													</div>
+												</div>
+
+
+											</row>
+
+	<p class="text-muted">Lorem Ipsum is simply dummy text of the printing and
+									of type and
 										scrambled it...
 									</p>
-									<div class="pro-deadline m-b-15">
-										<div class="sub-title">
-											Data Limite:
-										</div>
-										<div class="text-muted">
-											17 Aabil 2022
-										</div>
-									</div>
-								
-									<div class="project-members m-b-15">
-										<div>Colaboradores:</div>
-										<ul class="team-members">
-											<li>
-												<a href="#" data-toggle="tooltip" title="John Doe"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-											</li>
-											<li>
-												<a href="#" data-toggle="tooltip" title="Richard Miles"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-											</li>
-										
-										</ul>
-									</div>
-									<p class="m-b-5">Progresso <span class="text-success float-right">40%</span></p>
-									<div class="progress progress-xs mb-0">
-										<div class="progress-bar bg-success" role="progressbar" data-toggle="tooltip" title="40%" style="width: 40%"></div>
-									</div>
+											<small class="block text-ellipsis">
+												<span>2</span> <span class="text-muted">tarefas abertas, </span>
+												<span>5</span> <span class="text-muted">tarefas finalizadas</span>
+											</small>
+										</td>
+										<td>
+											<div class="progress progress-xs progress-striped">
+												<div class="progress-bar" role="progressbar" data-toggle="tooltip" title="15%" style="width: 15%"></div>
+											</div>
+										</td>
+
+									</tr>
 								</div>
-							</div></div><?php }} ?>
+								<div id='card2' class="card" draggable="true" ondragstart="dragStart(event)">
+									<tr>
+										<td>
+											<row class="row">
+												<div class="col-xl-10 col-lg-10 col-md-10 ">
+													<h4><a href="project-view.php">Pedidos teste</a></h4>
+												</div>
+												<div class="col-xl-1 col-lg-1 col-md-1 " style="
+    margin: 0px;
+    padding: 0px;
+">
+													<div class="dropdown dropdown-action">
+														<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+														<div class="dropdown-menu dropdown-menu-left">
+															<a class="dropdown-item" href="project-view.php"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+															<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														</div>
+													</div>
+												</div>
+
+
+											</row>
+	<p class="text-muted">Lorem Ipsum is simply dummy text of the printing and
+									 of type and
+										scrambled it...
+									</p>
+
+											<small class="block text-ellipsis">
+											<span>2</span> <span class="text-muted">tarefas abertas, </span>
+												<span>5</span> <span class="text-muted">tarefas finalizadas</span>
+											</small>
+										</td>
+										<td>
+											<div class="progress progress-xs progress-striped">
+												<div class="progress-bar" role="progressbar" data-toggle="tooltip" title="15%" style="width: 15%"></div>
+											</div>
+										</td>
+
+									</tr>
+								</div>
+							</div>
+						</div>
 					</div>
+					<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+						<div id="list2" class="board-list" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+							<div class="list-title">
+								Lucas
+							</div>
+						</div>
+					</div>
+
+				</div>
 			</div>
 			<!-- /Page Content -->
 
@@ -259,13 +291,12 @@ if (strlen($_SESSION['userlogin']) == 0) {
 			let sourceIdEl = document.getElementById(sourceId);
 			let sourceIdParentEl = sourceIdEl.parentElement;
 			// ev.target.id here is the id of target Object of the drop
-			var targetEl = document.getElementById(ev.target.id)
-			var targetParentEl = targetEl.parentElement;
+			let targetEl = document.getElementById(ev.target.id)
+			let targetParentEl = targetEl.parentElement;
 
 			// Compare List names to see if we are going between lists
 			// or within the same list
 			if (targetParentEl.id !== sourceIdParentEl.id) {
-			   
 				// If the source and destination have the same 
 				// className (card), then we risk dropping a Card in to a Card
 				// That may be a cool feature, but not for us!
@@ -277,14 +308,8 @@ if (strlen($_SESSION['userlogin']) == 0) {
 					targetParentEl.appendChild(sourceIdEl);
 
 				} else {
-					
-				console.log(targetEl.id);
-			    console.log(sourceIdEl.id);
-			  window.location.replace('mudapedido.php?idusuario=' + targetEl.id + '&idpedido='
-									+ sourceIdEl.id)
-					
+					// Append to the list
 					targetEl.appendChild(sourceIdEl);
-
 
 				}
 

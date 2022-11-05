@@ -53,30 +53,16 @@
 	
 		<!-- Notifications -->
 		<li class="nav-item dropdown">
-		    <?php 	 $iduser = $_SESSION['id'];
-					$sql2 = "SELECT * FROM mensagens WHERE id_recebido = :id_recebido";
-					$query2 = $dbh->prepare($sql2);
-					$query2->bindParam(':id_recebido', $iduser, PDO::PARAM_INT);
-					$query2->execute();
-					$resultados = $query2->fetchAll(PDO::FETCH_OBJ);
-					$cnt = 1; ?>
 			<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-				<i class="fa fa-bell-o"></i> <span class="badge badge-pill"><?php 	if ($query2->rowCount() > 0) {
-						foreach ($resultados as $row) {echo $query2->rowCount();}} ?></span>
+				<i class="fa fa-bell-o"></i> <span class="badge badge-pill">2</span>
 			</a>
 			<div class="dropdown-menu notifications">
 				<div class="topnav-dropdown-header">
 					<span class="notification-title">Notificações</span>
-					<a href="includes\modals\mensagens\limpmensagem.php" class="clear-noti"> Limpar Tudo </a>
+					<a href="javascript:void(0)" class="clear-noti"> Limpar Tudo </a>
 				</div>
 				<div class="noti-content">
 					<ul class="notification-list">
-					    	<?php
-					    
-					if ($query2->rowCount() > 0) {
-						foreach ($resultados as $row) {
-						    
-					?>
 						<li class="notification-message">
 							<a href="activities.php">
 								<div class="media">
@@ -84,13 +70,25 @@
 										<img alt="" src="assets/img/profiles/avatar-02.jpg">
 									</span>
 									<div class="media-body">
-										<p class="noti-details"><span class="noti-title"><?php echo $row->nome_user; ?></span> <?php echo $row->texto; ?></p>
-										<p class="noti-time"><span class="notification-time"><?php echo $row->data; ?></span></p>
+										<p class="noti-details"><span class="noti-title">John Doe</span> add você em um pedido <span class="noti-title">Patient appointment booking</span></p>
+										<p class="noti-time"><span class="notification-time">4 mins ago</span></p>
 									</div>
 								</div>
 							</a>
 						</li>
-					<?php }} ?>
+						<li class="notification-message">
+							<a href="activities.php">
+								<div class="media">
+									<span class="avatar">
+										<img alt="" src="assets/img/profiles/avatar-03.jpg">
+									</span>
+									<div class="media-body">
+										<p class="noti-details"><span class="noti-title">Tarah Shropshire</span> upload dos arquivos realizados <span class="noti-title">Appointment booking with payment gateway</span></p>
+										<p class="noti-time"><span class="notification-time">6 mins ago</span></p>
+									</div>
+								</div>
+							</a>
+						</li>
 						
 					
 						

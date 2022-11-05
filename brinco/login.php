@@ -25,13 +25,10 @@
 				$_SESSION['idfilial'] = $row->filial;
 				$_SESSION['id'] =  $row->id;
 			}//verifying Password
-		
-			if (password_verify($password, $hashpass)) {
+		$criptografada = md5($password);
+			if ($criptografada == $hashpass) {
 				$_SESSION['userlogin']=$_POST['username'];
-				$sql3 = "UPDATE `users` SET `ativo`= 'true' WHERE id = :id ";
-				$query3 = $dbh->prepare($sql3);
-		        $query3->bindParam(':id',	$_SESSION['id'],PDO::PARAM_INT);
-			    $query3-> execute();
+				
 				echo "<script>window.location.href= 'index.php'; </script>";
 			}
 			else {

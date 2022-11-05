@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 	session_start();
 	error_reporting(0);
 	include_once('includes/config.php');
@@ -13,53 +13,6 @@
 	  $query->execute();
 	   echo "<script>alert('Department deleted Successfully');</script>"; 
 	}
-	
-	if (isset($_POST['add_client'])) {
-	 echo    $datacriacao = date('d/m/Y');
-echo	    $valortotal = "R$ 00,00";
-echo	    $pedidostotal = "0";
-echo	    $idcriador = $_SESSION['userlogin'];
-echo	    $_SESSION['idfilial'];
-echo		$prinome = $_POST["prinome"];
-echo		$sobrenome = $_POST["sobrenome"];
-echo		$codigo = $_POST["codigo"];
-echo		$email = $_POST["email"];
-echo		$senha = $_POST["senha"];
-echo		$consenha = $_POST["consenha"];
-echo		$celular = $_POST["celular"];
-echo		$nomeempresa = $_POST["nomeempresa"];
-echo		$cep = $_POST["cep"];
-echo		$enderco = $_POST["endereco"];
-echo		$cnpj = $_POST["cnpj"];
-echo		$cpf = $_POST["cpf"];
-echo		$idfilial = $_POST["filail"];
-echo		$nascimento = $_POST["nascimento"];
-		
-	$sql =	
-	"INSERT INTO `clientes`( `idcriador`, `idfilial`, `valortotal`, `pedidostotal`, `prinome`, `sobrenome`, `codigo`, `email`, `senha`, `celular`, `nomeempresa`, `cep`, `enderco`, `cpf`, `cnpj`, `nascimento`, `datacriacao`)
-                    VALUES (:idcriador,:idfilial,:valortotal,:pedidostotal,:prinome,:sobrenome,:codigo,:email,:senha,:celular,:nomeempresa,:cep,:enderco,:cpf,:cnpj,:nascimento,:datacriacao)";
-	$query = $dbh->prepare($sql);
-	$query->bindParam(':idcriador', $idcriador, PDO::PARAM_INT);
-		$query->bindParam(':idfilial', $idfilial, PDO::PARAM_INT);
-		$query->bindParam(':valortotal', $valortotal, PDO::PARAM_INT);
-		$query->bindParam(':pedidostotal', $pedidostotal, PDO::PARAM_INT);
-		$query->bindParam(':prinome', $prinome, PDO::PARAM_STR);
-		$query->bindParam(':sobrenome', $sobrenome, PDO::PARAM_STR);
-		$query->bindParam(':codigo', $codigo, PDO::PARAM_STR);
-		$query->bindParam(':email', $email, PDO::PARAM_STR);
-		$query->bindParam(':senha', $senha, PDO::PARAM_STR);
-		$query->bindParam(':celular', $celular, PDO::PARAM_STR);
-		$query->bindParam(':nomeempresa', $nomeempresa, PDO::PARAM_STR);
-		$query->bindParam(':cep', $cep, PDO::PARAM_STR);
-		$query->bindParam(':enderco', $enderco, PDO::PARAM_STR);
-		$query->bindParam(':cpf', $cpf, PDO::PARAM_STR);
-		$query->bindParam(':cnpj', $cnpj, PDO::PARAM_STR);
-		$query->bindParam(':nascimento', $nascimento, PDO::PARAM_STR);
-		$query->bindParam(':datacriacao', $datacriacao, PDO::PARAM_STR);
-		$query->execute();
-		$_POST['add_client'] = null;
-	}
-	$_POST['add_client'] = null;
  ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -70,7 +23,7 @@ echo		$nascimento = $_POST["nascimento"];
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>Clients</title>
+        <title>Clients - HRMS admin template</title>
 		
 		<!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
@@ -128,6 +81,8 @@ echo		$nascimento = $_POST["nascimento"];
 							<div class="col-auto float-right ml-auto">
 								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_client"><i class="fa fa-plus"></i> Adicionar Cliente</a>
 								<div class="view-icons">
+									<a href="clients.php" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
+									<a href="clients-list.php" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
 								</div>
 							</div>
 						</div>
@@ -166,7 +121,7 @@ echo		$nascimento = $_POST["nascimento"];
 					
 					<div class="row staff-grid-row">
 					<?php
-						$sql = "SELECT * FROM clientes";
+						$sql = "SELECT * FROM clients";
 						$query = $dbh->prepare($sql);
 						$query->execute();
 						$results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -178,7 +133,9 @@ echo		$nascimento = $_POST["nascimento"];
 					?>
 						<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
 							<div class="profile-widget">
-								
+								<div class="profile-img">
+									<a href="client-profile.php" class="avatar"><img alt="picture" src="assets/img/profiles/avatar-19.jpg"></a>
+								</div>
 								<div class="dropdown profile-action">
 									<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                 <div class="dropdown-menu dropdown-menu-right">
@@ -186,11 +143,10 @@ echo		$nascimento = $_POST["nascimento"];
                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_client"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                                 </div>
 								</div>
-								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="client-profile.php"><?php echo "ID: ". htmlentities($row->id);?></a></h4>
-								<h5 class="user-name m-t-10 mb-0 text-ellipsis"><a href="client-profile.php"><?php echo "Nome: ".htmlentities(($row->prinome).' '.($row->sobrenome)); ?></a></h5>
-								<div class="small text-muted"><?php echo "Contato: ". htmlentities($row->celular);?></div>
-								
-								<a href="client-profile.php" class="btn btn-white btn-sm m-t-10">Ver Perfil</a>
+								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="client-profile.php"><?php echo htmlentities($row->Company);?></a></h4>
+								<h5 class="user-name m-t-10 mb-0 text-ellipsis"><a href="client-profile.php"><?php echo htmlentities(($row->FirstName).' '.($row->LastName)); ?></a></h5>
+								<div class="small text-muted"><?php echo htmlentities($row->Phone);?></div>
+								<a href="client-profile.php" class="btn btn-white btn-sm m-t-10">View Profile</a>
 							</div>
 						</div>
 						<?php $cnt+=1; 

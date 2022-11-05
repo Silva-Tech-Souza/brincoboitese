@@ -4,7 +4,7 @@ $id = substr(str_shuffle($set), 0, 6); ?>
 					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title">Adicionar Cliente</h5>
+								<h5 class="modal-title">Add Client</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -12,40 +12,22 @@ $id = substr(str_shuffle($set), 0, 6); ?>
 							<div class="modal-body">
 								<form method="POST">
 									<div class="row">
-									    	<div class="col-md-6">  
+										<div class="col-md-6">
 											<div class="form-group">
-												<label class="col-form-label">Client ID <span class="text-danger">*</span></label>
-												<input name="clientid" value="<?php echo 'CLT-'.$id; ?>" readonly class="form-control floating" type="text">
+												<label class="col-form-label">First Name <span class="text-danger">*</span></label>
+												<input name="firstname" required class="form-control" type="text">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="col-form-label">Primeiro Nome <span class="text-danger">*</span></label>
-												<input name="prinome" required class="form-control" type="text">
+												<label class="col-form-label">Last Name</label>
+												<input name="lastname" required class="form-control" type="text">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="col-form-label">Sobrenome</label>
-												<input name="sobrenome" required class="form-control" type="text">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label class="col-form-label">CPF <span class="text-danger">*</span></label>
-												<input name="cpf"  class="form-control" type="text">
-											</div>
-										</div>
-											<div class="col-md-6">
-											<div class="form-group">
-												<label class="col-form-label">Data de Nascimento <span class="text-danger">*</span></label>
-												<input name="nascimento" class="form-control" type="date">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label class="col-form-label">Código <span class="text-danger">*</span></label>
-												<input name="codigo" required class="form-control" type="text">
+												<label class="col-form-label">Username <span class="text-danger">*</span></label>
+												<input name="username" required class="form-control" type="text">
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -56,70 +38,52 @@ $id = substr(str_shuffle($set), 0, 6); ?>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="col-form-label">Senha</label>
-												<input name="senha" required class="form-control" type="password">
+												<label class="col-form-label">Password</label>
+												<input name="password" required class="form-control" type="password">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="col-form-label">Confirmar Senha</label>
-												<input name="consenha" required class="form-control" type="password">
+												<label class="col-form-label">Confirm Password</label>
+												<input name="confirmpass" required class="form-control" type="password">
+											</div>
+										</div>
+										<div class="col-md-6">  
+											<div class="form-group">
+												<label class="col-form-label">Client ID <span class="text-danger">*</span></label>
+												<input name="clientid" value="<?php echo 'CLT-'.$id; ?>" readonly class="form-control floating" type="text">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Filial <span class="text-danger">*</span></label>
-												<select required name="filail" class="select">
-													<option>Selecione a Filial</option>
-													<?php 
-											$sql2 = "SELECT * from filiais";
-											$query2 = $dbh -> prepare($sql2);
-											$query2->execute();
-											$result2=$query2->fetchAll(PDO::FETCH_OBJ);
-											foreach($result2 as $row)
-											{          
-												?>  
-											<option value="<?php echo htmlentities($row->nomefantasia);?>">
-											<?php echo htmlentities($row->nomefantasia);?></option>
-											<?php } ?> 
-												</select>
+												<label class="col-form-label">Phone </label>
+												<input name="phone" required class="form-control" type="text">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="col-form-label">Celular </label>
-												<input name="celular" required class="form-control" type="text">
+												<label class="col-form-label">Company Name</label>
+												<input name="company" required class="form-control" type="text">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="col-form-label">Nome da Empresa</label>
-												<input name="nomeempresa"  class="form-control" type="text">
+												<label class="col-form-label">Address</label>
+												<input class="form-control" name="address" required type="text">
 											</div>
 										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label class="col-form-label">CNPJ</label>
-												<input name="cnpj"  class="form-control" type="text">
+										<div class="col-sm-12">
+											<div class="custom-file">
+												<label for="">Client Picture</label>
+												<input name="propic" type="file" class="custom-file-input" id="validatedCustomFile" required="">
+												<label class="custom-file-label" for="validatedCustomFile">Choose Profile Picture...</label>
+												<div class="invalid-feedback">Example invalid custom file feedback</div>
 											</div>
 										</div>
-											<div class="col-md-6">
-											<div class="form-group">
-												<label class="col-form-label">CEP</label>
-												<input class="form-control" name="cep" required type="text">
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<label class="col-form-label">Endereço</label>
-												<input class="form-control" name="endereco" required type="text">
-											</div>
-										</div>
-									
 										
 									</div>
 									<div class="submit-section">
-										<button type="submit" name="add_client" class="btn btn-primary submit-btn">Cadastrar</button>
+										<button type="submit" name="add_client" class="btn btn-primary submit-btn">Submit</button>
 									</div>
 								</form>
 							</div>

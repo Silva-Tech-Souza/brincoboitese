@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 	session_start();
 	error_reporting(0);
 	include('includes/config.php');
@@ -15,7 +15,7 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>Pedidos</title>
+        <title>Projects</title>
 		
 		<!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
@@ -124,11 +124,21 @@
 						<div class="col-sm-6 col-md-2"> 
 							<div class="form-group form-focus select-focus">
 								<select class="select floating"> 
-									<option>Selecione o tipo</option>
-									<option>Web Developer</option>
-									<option>Web Designer</option>
-									<option>Android Developer</option>
-									<option>Ios Developer</option>
+								<option>--Selecionar--</option>
+									<?php 
+											$sql3 = "SELECT * from servico";
+											$queryServer = $dbh -> prepare($sql3);
+											$queryServer->execute();
+											$result2 = $queryServer->fetchAll(PDO::FETCH_OBJ);
+											
+											if($queryServer->rowCount() > 0){
+											    foreach($result2 as $row)
+											{          
+											
+											
+												?>  
+											<option value='<?php echo $row->id?>'><?php echo $row->nomeservico?></option>
+											<?php }} ?> 
 								</select>
 								<label class="focus-label">Tipo de Serviços</label>
 							</div>

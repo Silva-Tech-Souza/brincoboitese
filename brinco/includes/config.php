@@ -1,9 +1,9 @@
 <?php 
 // DB credentials.
-define('DB_HOST','localhost');
-define('DB_USER','root');
-define('DB_PASS','');
-define('DB_NAME','sistema_financeiro');
+define('DB_HOST','localhost:3306');
+define('DB_USER','silvat81_silvatc');
+define('DB_PASS','2QiRpXxRgR5BhyT');
+define('DB_NAME','silvat81_sts');
 // Establish database connection.
 try
 {

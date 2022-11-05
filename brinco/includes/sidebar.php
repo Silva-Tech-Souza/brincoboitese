@@ -79,7 +79,7 @@
 						<li><a href="overtime.php">Horas Extras</a></li>
 					</ul>
 				</li>
-
+	<li><a href="roles-permissions.php"><i class="la la-sitemap"></i> <span>Cargo</span></a></li>
 				
 				<li class="submenu">
 					<a href="#"><i class="la la-edit"></i> <span> Curso </span> <span class="menu-arrow"></span></a>
